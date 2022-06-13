@@ -1,0 +1,6 @@
+[submodule "bspline_trajectory_ros"]
+	path = bspline_trajectory_ros
+	url = git@github.com:matthewoots/bspline_trajectory_ros.git
+[submodule "simple_quad_simulator"]
+	path = simple_quad_simulator
+	url = git@github.com:matthewoots/simple_quad_simulator.git
