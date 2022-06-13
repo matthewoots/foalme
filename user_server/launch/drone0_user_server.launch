@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<launch>
+
+<node pkg="user_server" type="user_server_node" name="user_server_node" output="screen">
+    <param name="file_loaction" value="/cloud.pcd" />
+    <param name="tracker_timer_hz" value="5.0"/>
+    <param name="cloud_timer_hz" value="2.0"/>
+</node>
+
+<include file="$(find user_server)/launch/drone0_trajectory.launch" />
+
+<node name="rviz" pkg="rviz" type="rviz" args="-d $(find quad)/rviz/display.rviz"/>
+
+</launch>
