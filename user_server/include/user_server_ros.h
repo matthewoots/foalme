@@ -99,7 +99,15 @@ class user_server_ros
             {
                 for (int i = 0; i < agents.size(); i++)
                 {
-
+                    if (_formation.compare("left-right-facing") == 0)
+                    {
+                        // Lets do it back and forth
+                        agent_waypoints[i].waypoints.push_back(
+                            Eigen::Vector3d(
+                            agents[i].pos.x(), 
+                            -agents[i].pos.y(), 
+                            agents[i].pos.z()));
+                    }
                 }
             }
 
@@ -113,12 +121,12 @@ class user_server_ros
 
                 if (agents[i].mission >= 0)
                 {
-                    if ((agent_waypoints[agents[i].id].waypoints[agents[i].mission] - agents[i].pos).norm() >= 0.1)
+                    if ((agent_waypoints[agents[i].id].waypoints[agents[i].mission] - agents[i].pos).norm() >= 0.3)
                         continue;
                 }
                 
                 /** @brief Publisher that publishes goal vector */
-                _goal_pub = _nh.advertise<geometry_msgs::PoseStamped>("/" + _id + "/goal", 20, true);
+                _goal_pub = _nh.advertise<geometry_msgs::PoseStamped>("/" + _id + "/goal", 40, true);
                 ros::Time start_time = ros::Time::now();
                 bool early_break = false;
                 
@@ -152,12 +160,13 @@ class user_server_ros
                     continue;
 
                 _goal_pub.publish(goal);
+                _goal_pub.publish(goal);
                 
-                start_time = ros::Time::now();
-                while ((ros::Time::now() - start_time).toSec() < 2.0)
-                {
-                    // Wait
-                }
+                // start_time = ros::Time::now();
+                // while ((ros::Time::now() - start_time).toSec() < 2.0)
+                // {
+                //     // Wait
+                // }
                 
                 std::cout << "[user_server] " << KGRN << 
                     "published waypoint " << agents[i].mission << KNRM << std::endl;
