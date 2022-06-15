@@ -10,6 +10,7 @@
 #include <Eigen/Dense>
 #include <ros/ros.h>
 #include <random>
+#include <mutex>
 
 #include <nav_msgs/Odometry.h>
 #include <nav_msgs/Path.h>
@@ -77,7 +78,9 @@ class user_server_ros
 
         int _agent_number;
 
-        double _tracker_timer_hz, _cloud_hz; 
+        double _tracker_timer_hz, _cloud_hz;
+
+        std::mutex agents_mutex; 
 
         vector<agent_state> agents;   
 
@@ -90,6 +93,7 @@ class user_server_ros
 
         void target_update_timer(const ros::TimerEvent &)
         {
+            std::lock_guard<std::mutex> agents_lock(agents_mutex);
             if ((ros::Time::now() - module_start_time).toSec() < 3.0)
             {
                 return;
@@ -99,13 +103,40 @@ class user_server_ros
             {
                 for (int i = 0; i < agents.size(); i++)
                 {
-                    if (_formation.compare("left-right-facing") == 0)
+                    // 1. antipodal
+                    // 2. horizontal-line
+                    // 3. vertical-line
+                    // 4. top-down-facing
+                    // 5. left-right-facing
+                    if (_formation.compare("left-right-facing") == 0 || 
+                        _formation.compare("vertical-line") == 0)
                     {
-                        // Lets do it back and forth
                         agent_waypoints[i].waypoints.push_back(
                             Eigen::Vector3d(
                             agents[i].pos.x(), 
                             -agents[i].pos.y(), 
+                            agents[i].pos.z()));
+                    }
+
+                    if (_formation.compare("antipodal") == 0)
+                    {
+                        Eigen::Vector3d opp_vector = Eigen::Vector3d(
+                            -agents[i].pos.x(), 
+                            -agents[i].pos.y(), 
+                            agents[i].pos.z());
+                        
+                        double opp_vector_norm = opp_vector.norm();
+
+                        agent_waypoints[i].waypoints.push_back(opp_vector);
+                    }
+
+                    if (_formation.compare("top-down-facing") == 0 || 
+                        _formation.compare("horizontal-line") == 0)
+                    {
+                        agent_waypoints[i].waypoints.push_back(
+                            Eigen::Vector3d(
+                            -agents[i].pos.x(), 
+                            agents[i].pos.y(), 
                             agents[i].pos.z()));
                     }
                 }
@@ -162,11 +193,11 @@ class user_server_ros
                 _goal_pub.publish(goal);
                 _goal_pub.publish(goal);
                 
-                // start_time = ros::Time::now();
-                // while ((ros::Time::now() - start_time).toSec() < 2.0)
-                // {
-                //     // Wait
-                // }
+                start_time = ros::Time::now();
+                while ((ros::Time::now() - start_time).toSec() < 0.3)
+                {
+                    // Wait
+                }
                 
                 std::cout << "[user_server] " << KGRN << 
                     "published waypoint " << agents[i].mission << KNRM << std::endl;
@@ -198,7 +229,9 @@ class user_server_ros
             // msg->pose.effort.z
             nwu_transform.linear() = Quaterniond(
                 msg->effort[0], msg->effort[1], msg->effort[2], msg->effort[3]).toRotationMatrix();
-            
+
+            std::lock_guard<std::mutex> agents_lock(agents_mutex);
+
             if (!agents.empty())
             {
                 int idx = stoi(msg->name[0]);

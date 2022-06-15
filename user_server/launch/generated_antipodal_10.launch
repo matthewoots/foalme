@@ -10,8 +10,8 @@
         <param name="agent_id" value="$(arg id)"/>
         <param name="sensing_range" value="4"/>
         <param name="command_rate" value="$(arg command_hz)"/>
-        <param name="start_x" value="-4.0"/>
-        <param name="start_y" value="30.0"/>
+        <param name="start_x" value="-3.18430775202e-05"/>
+        <param name="start_y" value="-12.0"/>
         <param name="start_z" value="1.5"/>
         <param name="yaw_offset" value="0.0"/>
     </node>
@@ -56,8 +56,8 @@
         <param name="agent_id" value="$(arg id)"/>
         <param name="sensing_range" value="4"/>
         <param name="command_rate" value="$(arg command_hz)"/>
-        <param name="start_x" value="-2.0"/>
-        <param name="start_y" value="30.0"/>
+        <param name="start_x" value="-7.05344363677"/>
+        <param name="start_y" value="-9.70818895896"/>
         <param name="start_z" value="1.5"/>
         <param name="yaw_offset" value="0.0"/>
     </node>
@@ -102,8 +102,8 @@
         <param name="agent_id" value="$(arg id)"/>
         <param name="sensing_range" value="4"/>
         <param name="command_rate" value="$(arg command_hz)"/>
-        <param name="start_x" value="0.0"/>
-        <param name="start_y" value="30.0"/>
+        <param name="start_x" value="-11.4126840996"/>
+        <param name="start_y" value="-3.70818576175"/>
         <param name="start_z" value="1.5"/>
         <param name="yaw_offset" value="0.0"/>
     </node>
@@ -148,8 +148,8 @@
         <param name="agent_id" value="$(arg id)"/>
         <param name="sensing_range" value="4"/>
         <param name="command_rate" value="$(arg command_hz)"/>
-        <param name="start_x" value="2.0"/>
-        <param name="start_y" value="30.0"/>
+        <param name="start_x" value="-11.4126742595"/>
+        <param name="start_y" value="3.70821604632"/>
         <param name="start_z" value="1.5"/>
         <param name="yaw_offset" value="0.0"/>
     </node>
@@ -194,8 +194,8 @@
         <param name="agent_id" value="$(arg id)"/>
         <param name="sensing_range" value="4"/>
         <param name="command_rate" value="$(arg command_hz)"/>
-        <param name="start_x" value="4.0"/>
-        <param name="start_y" value="30.0"/>
+        <param name="start_x" value="-7.05341787519"/>
+        <param name="start_y" value="9.70820767588"/>
         <param name="start_z" value="1.5"/>
         <param name="yaw_offset" value="0.0"/>
     </node>
@@ -240,8 +240,8 @@
         <param name="agent_id" value="$(arg id)"/>
         <param name="sensing_range" value="4"/>
         <param name="command_rate" value="$(arg command_hz)"/>
-        <param name="start_x" value="-4.0"/>
-        <param name="start_y" value="-30.0"/>
+        <param name="start_x" value="0.0"/>
+        <param name="start_y" value="12.0"/>
         <param name="start_z" value="1.5"/>
         <param name="yaw_offset" value="0.0"/>
     </node>
@@ -286,8 +286,8 @@
         <param name="agent_id" value="$(arg id)"/>
         <param name="sensing_range" value="4"/>
         <param name="command_rate" value="$(arg command_hz)"/>
-        <param name="start_x" value="-2.0"/>
-        <param name="start_y" value="-30.0"/>
+        <param name="start_x" value="7.05341787519"/>
+        <param name="start_y" value="9.70820767588"/>
         <param name="start_z" value="1.5"/>
         <param name="yaw_offset" value="0.0"/>
     </node>
@@ -332,8 +332,8 @@
         <param name="agent_id" value="$(arg id)"/>
         <param name="sensing_range" value="4"/>
         <param name="command_rate" value="$(arg command_hz)"/>
-        <param name="start_x" value="0.0"/>
-        <param name="start_y" value="-30.0"/>
+        <param name="start_x" value="11.4126742595"/>
+        <param name="start_y" value="3.70821604632"/>
         <param name="start_z" value="1.5"/>
         <param name="yaw_offset" value="0.0"/>
     </node>
@@ -378,8 +378,8 @@
         <param name="agent_id" value="$(arg id)"/>
         <param name="sensing_range" value="4"/>
         <param name="command_rate" value="$(arg command_hz)"/>
-        <param name="start_x" value="2.0"/>
-        <param name="start_y" value="-30.0"/>
+        <param name="start_x" value="11.4126840996"/>
+        <param name="start_y" value="-3.70818576175"/>
         <param name="start_z" value="1.5"/>
         <param name="yaw_offset" value="0.0"/>
     </node>
@@ -424,8 +424,8 @@
         <param name="agent_id" value="$(arg id)"/>
         <param name="sensing_range" value="4"/>
         <param name="command_rate" value="$(arg command_hz)"/>
-        <param name="start_x" value="4.0"/>
-        <param name="start_y" value="-30.0"/>
+        <param name="start_x" value="7.05344363677"/>
+        <param name="start_y" value="-9.70818895896"/>
         <param name="start_z" value="1.5"/>
         <param name="yaw_offset" value="0.0"/>
     </node>

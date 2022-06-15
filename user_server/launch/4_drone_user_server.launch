@@ -19,7 +19,7 @@
         0.0, 20.0, 2.0]</rosparam>
 </node>
 
-<include file="$(find user_server)/launch/generated_$(arg formation_type)_10.launch" />
+<include file="$(find user_server)/launch/generated_$(arg formation_type)_4.launch" />
 
 <node name="rviz" pkg="rviz" type="rviz" args="-d $(find quad)/rviz/generated_display_10.rviz"/>
 
