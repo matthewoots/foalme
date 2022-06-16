@@ -1,0 +1,924 @@
+<?xml version="1.0"?>
+<launch>
+
+<group ns="drone0">
+    <arg name="id" value="drone0"/>
+    <arg name="command_hz" value="10"/>
+    <node pkg="quad" type="quad_node" name="quad_node" output="screen">
+        <rosparam command="load" file="$(find quad)/params/param.yaml" />
+        <param name="mesh_resource" value="file://$(find quad)/meshes/fake_drone.dae" />
+        <param name="agent_id" value="$(arg id)"/>
+        <param name="sensing_range" value="4"/>
+        <param name="command_rate" value="$(arg command_hz)"/>
+        <param name="start_x" value="-3.18430775202e-05"/>
+        <param name="start_y" value="-12.0"/>
+        <param name="start_z" value="1.5"/>
+        <param name="yaw_offset" value="0.0"/>
+    </node>
+    <remap from="/$(arg id)/mavros/local_position/pose" to="/$(arg id)/mavros/odom_nwu"/>
+    <node pkg="bs_trajectory_ros" type="bs_trajectory_ros_node" name="bs_trajectory_ros_node" output="screen">
+        <param name="agent_id" value="$(arg id)"/>
+        <param name="odom_or_pose" value="odom"/>
+        <param name="traj_opt_update_hz" value="4"/>
+        <param name="cmd_update_hz" value="$(arg command_hz)"/>
+        <!-- Bspline parameters -->
+        <param name="traj_duration_secs" value="8.0"/>
+        <param name="order" value="3"/>
+        <param name="des_knot_div" value="3"/>
+        <param name="max_velocity" value="2.0"/>
+        <!-- RRT parameters -->
+        <param name="runtime_error" value="0.12"/>
+        <param name="sub_runtime_error" value="0.025"/>
+        <param name="search_radius" value="7.0"/>
+        <param name="threshold" value="0.3"/>
+        <param name="search_interval" value="7.0"/>
+        <param name="xybuffer" value="1.0"/>
+        <param name="zbuffer" value="1.0"/>
+        <param name="passage_size" value="10.0"/>
+        <rosparam param="height">[1.0, 3.0]</rosparam>
+        <!-- Optimization parameters -->
+        <param name="weight_smooth" value="1.0"/>
+        <param name="weight_feas" value="1.0"/>
+        <param name="weight_term" value="0.1"/>
+        <param name="weight_static" value="2.0"/>
+        <param name="weight_reci" value="5.0"/>
+        <param name="max_acc" value="0.4"/>
+    </node>
+</group>
+    
+
+<group ns="drone1">
+    <arg name="id" value="drone1"/>
+    <arg name="command_hz" value="10"/>
+    <node pkg="quad" type="quad_node" name="quad_node" output="screen">
+        <rosparam command="load" file="$(find quad)/params/param.yaml" />
+        <param name="mesh_resource" value="file://$(find quad)/meshes/fake_drone.dae" />
+        <param name="agent_id" value="$(arg id)"/>
+        <param name="sensing_range" value="4"/>
+        <param name="command_rate" value="$(arg command_hz)"/>
+        <param name="start_x" value="-3.7082311886"/>
+        <param name="start_y" value="-11.4126693395"/>
+        <param name="start_z" value="1.5"/>
+        <param name="yaw_offset" value="0.0"/>
+    </node>
+    <remap from="/$(arg id)/mavros/local_position/pose" to="/$(arg id)/mavros/odom_nwu"/>
+    <node pkg="bs_trajectory_ros" type="bs_trajectory_ros_node" name="bs_trajectory_ros_node" output="screen">
+        <param name="agent_id" value="$(arg id)"/>
+        <param name="odom_or_pose" value="odom"/>
+        <param name="traj_opt_update_hz" value="4"/>
+        <param name="cmd_update_hz" value="$(arg command_hz)"/>
+        <!-- Bspline parameters -->
+        <param name="traj_duration_secs" value="8.0"/>
+        <param name="order" value="3"/>
+        <param name="des_knot_div" value="3"/>
+        <param name="max_velocity" value="2.0"/>
+        <!-- RRT parameters -->
+        <param name="runtime_error" value="0.12"/>
+        <param name="sub_runtime_error" value="0.025"/>
+        <param name="search_radius" value="7.0"/>
+        <param name="threshold" value="0.3"/>
+        <param name="search_interval" value="7.0"/>
+        <param name="xybuffer" value="1.0"/>
+        <param name="zbuffer" value="1.0"/>
+        <param name="passage_size" value="10.0"/>
+        <rosparam param="height">[1.0, 3.0]</rosparam>
+        <!-- Optimization parameters -->
+        <param name="weight_smooth" value="1.0"/>
+        <param name="weight_feas" value="1.0"/>
+        <param name="weight_term" value="0.1"/>
+        <param name="weight_static" value="2.0"/>
+        <param name="weight_reci" value="5.0"/>
+        <param name="max_acc" value="0.4"/>
+    </node>
+</group>
+    
+
+<group ns="drone2">
+    <arg name="id" value="drone2"/>
+    <arg name="command_hz" value="10"/>
+    <node pkg="quad" type="quad_node" name="quad_node" output="screen">
+        <rosparam command="load" file="$(find quad)/params/param.yaml" />
+        <param name="mesh_resource" value="file://$(find quad)/meshes/fake_drone.dae" />
+        <param name="agent_id" value="$(arg id)"/>
+        <param name="sensing_range" value="4"/>
+        <param name="command_rate" value="$(arg command_hz)"/>
+        <param name="start_x" value="-7.05344363677"/>
+        <param name="start_y" value="-9.70818895896"/>
+        <param name="start_z" value="1.5"/>
+        <param name="yaw_offset" value="0.0"/>
+    </node>
+    <remap from="/$(arg id)/mavros/local_position/pose" to="/$(arg id)/mavros/odom_nwu"/>
+    <node pkg="bs_trajectory_ros" type="bs_trajectory_ros_node" name="bs_trajectory_ros_node" output="screen">
+        <param name="agent_id" value="$(arg id)"/>
+        <param name="odom_or_pose" value="odom"/>
+        <param name="traj_opt_update_hz" value="4"/>
+        <param name="cmd_update_hz" value="$(arg command_hz)"/>
+        <!-- Bspline parameters -->
+        <param name="traj_duration_secs" value="8.0"/>
+        <param name="order" value="3"/>
+        <param name="des_knot_div" value="3"/>
+        <param name="max_velocity" value="2.0"/>
+        <!-- RRT parameters -->
+        <param name="runtime_error" value="0.12"/>
+        <param name="sub_runtime_error" value="0.025"/>
+        <param name="search_radius" value="7.0"/>
+        <param name="threshold" value="0.3"/>
+        <param name="search_interval" value="7.0"/>
+        <param name="xybuffer" value="1.0"/>
+        <param name="zbuffer" value="1.0"/>
+        <param name="passage_size" value="10.0"/>
+        <rosparam param="height">[1.0, 3.0]</rosparam>
+        <!-- Optimization parameters -->
+        <param name="weight_smooth" value="1.0"/>
+        <param name="weight_feas" value="1.0"/>
+        <param name="weight_term" value="0.1"/>
+        <param name="weight_static" value="2.0"/>
+        <param name="weight_reci" value="5.0"/>
+        <param name="max_acc" value="0.4"/>
+    </node>
+</group>
+    
+
+<group ns="drone3">
+    <arg name="id" value="drone3"/>
+    <arg name="command_hz" value="10"/>
+    <node pkg="quad" type="quad_node" name="quad_node" output="screen">
+        <rosparam command="load" file="$(find quad)/params/param.yaml" />
+        <param name="mesh_resource" value="file://$(find quad)/meshes/fake_drone.dae" />
+        <param name="agent_id" value="$(arg id)"/>
+        <param name="sensing_range" value="4"/>
+        <param name="command_rate" value="$(arg command_hz)"/>
+        <param name="start_x" value="-9.70821703431"/>
+        <param name="start_y" value="-7.05340499438"/>
+        <param name="start_z" value="1.5"/>
+        <param name="yaw_offset" value="0.0"/>
+    </node>
+    <remap from="/$(arg id)/mavros/local_position/pose" to="/$(arg id)/mavros/odom_nwu"/>
+    <node pkg="bs_trajectory_ros" type="bs_trajectory_ros_node" name="bs_trajectory_ros_node" output="screen">
+        <param name="agent_id" value="$(arg id)"/>
+        <param name="odom_or_pose" value="odom"/>
+        <param name="traj_opt_update_hz" value="4"/>
+        <param name="cmd_update_hz" value="$(arg command_hz)"/>
+        <!-- Bspline parameters -->
+        <param name="traj_duration_secs" value="8.0"/>
+        <param name="order" value="3"/>
+        <param name="des_knot_div" value="3"/>
+        <param name="max_velocity" value="2.0"/>
+        <!-- RRT parameters -->
+        <param name="runtime_error" value="0.12"/>
+        <param name="sub_runtime_error" value="0.025"/>
+        <param name="search_radius" value="7.0"/>
+        <param name="threshold" value="0.3"/>
+        <param name="search_interval" value="7.0"/>
+        <param name="xybuffer" value="1.0"/>
+        <param name="zbuffer" value="1.0"/>
+        <param name="passage_size" value="10.0"/>
+        <rosparam param="height">[1.0, 3.0]</rosparam>
+        <!-- Optimization parameters -->
+        <param name="weight_smooth" value="1.0"/>
+        <param name="weight_feas" value="1.0"/>
+        <param name="weight_term" value="0.1"/>
+        <param name="weight_static" value="2.0"/>
+        <param name="weight_reci" value="5.0"/>
+        <param name="max_acc" value="0.4"/>
+    </node>
+</group>
+    
+
+<group ns="drone4">
+    <arg name="id" value="drone4"/>
+    <arg name="command_hz" value="10"/>
+    <node pkg="quad" type="quad_node" name="quad_node" output="screen">
+        <rosparam command="load" file="$(find quad)/params/param.yaml" />
+        <param name="mesh_resource" value="file://$(find quad)/meshes/fake_drone.dae" />
+        <param name="agent_id" value="$(arg id)"/>
+        <param name="sensing_range" value="4"/>
+        <param name="command_rate" value="$(arg command_hz)"/>
+        <param name="start_x" value="-11.4126840996"/>
+        <param name="start_y" value="-3.70818576175"/>
+        <param name="start_z" value="1.5"/>
+        <param name="yaw_offset" value="0.0"/>
+    </node>
+    <remap from="/$(arg id)/mavros/local_position/pose" to="/$(arg id)/mavros/odom_nwu"/>
+    <node pkg="bs_trajectory_ros" type="bs_trajectory_ros_node" name="bs_trajectory_ros_node" output="screen">
+        <param name="agent_id" value="$(arg id)"/>
+        <param name="odom_or_pose" value="odom"/>
+        <param name="traj_opt_update_hz" value="4"/>
+        <param name="cmd_update_hz" value="$(arg command_hz)"/>
+        <!-- Bspline parameters -->
+        <param name="traj_duration_secs" value="8.0"/>
+        <param name="order" value="3"/>
+        <param name="des_knot_div" value="3"/>
+        <param name="max_velocity" value="2.0"/>
+        <!-- RRT parameters -->
+        <param name="runtime_error" value="0.12"/>
+        <param name="sub_runtime_error" value="0.025"/>
+        <param name="search_radius" value="7.0"/>
+        <param name="threshold" value="0.3"/>
+        <param name="search_interval" value="7.0"/>
+        <param name="xybuffer" value="1.0"/>
+        <param name="zbuffer" value="1.0"/>
+        <param name="passage_size" value="10.0"/>
+        <rosparam param="height">[1.0, 3.0]</rosparam>
+        <!-- Optimization parameters -->
+        <param name="weight_smooth" value="1.0"/>
+        <param name="weight_feas" value="1.0"/>
+        <param name="weight_term" value="0.1"/>
+        <param name="weight_static" value="2.0"/>
+        <param name="weight_reci" value="5.0"/>
+        <param name="max_acc" value="0.4"/>
+    </node>
+</group>
+    
+
+<group ns="drone5">
+    <arg name="id" value="drone5"/>
+    <arg name="command_hz" value="10"/>
+    <node pkg="quad" type="quad_node" name="quad_node" output="screen">
+        <rosparam command="load" file="$(find quad)/params/param.yaml" />
+        <param name="mesh_resource" value="file://$(find quad)/meshes/fake_drone.dae" />
+        <param name="agent_id" value="$(arg id)"/>
+        <param name="sensing_range" value="4"/>
+        <param name="command_rate" value="$(arg command_hz)"/>
+        <param name="start_x" value="-12.0"/>
+        <param name="start_y" value="1.59215387601e-05"/>
+        <param name="start_z" value="1.5"/>
+        <param name="yaw_offset" value="0.0"/>
+    </node>
+    <remap from="/$(arg id)/mavros/local_position/pose" to="/$(arg id)/mavros/odom_nwu"/>
+    <node pkg="bs_trajectory_ros" type="bs_trajectory_ros_node" name="bs_trajectory_ros_node" output="screen">
+        <param name="agent_id" value="$(arg id)"/>
+        <param name="odom_or_pose" value="odom"/>
+        <param name="traj_opt_update_hz" value="4"/>
+        <param name="cmd_update_hz" value="$(arg command_hz)"/>
+        <!-- Bspline parameters -->
+        <param name="traj_duration_secs" value="8.0"/>
+        <param name="order" value="3"/>
+        <param name="des_knot_div" value="3"/>
+        <param name="max_velocity" value="2.0"/>
+        <!-- RRT parameters -->
+        <param name="runtime_error" value="0.12"/>
+        <param name="sub_runtime_error" value="0.025"/>
+        <param name="search_radius" value="7.0"/>
+        <param name="threshold" value="0.3"/>
+        <param name="search_interval" value="7.0"/>
+        <param name="xybuffer" value="1.0"/>
+        <param name="zbuffer" value="1.0"/>
+        <param name="passage_size" value="10.0"/>
+        <rosparam param="height">[1.0, 3.0]</rosparam>
+        <!-- Optimization parameters -->
+        <param name="weight_smooth" value="1.0"/>
+        <param name="weight_feas" value="1.0"/>
+        <param name="weight_term" value="0.1"/>
+        <param name="weight_static" value="2.0"/>
+        <param name="weight_reci" value="5.0"/>
+        <param name="max_acc" value="0.4"/>
+    </node>
+</group>
+    
+
+<group ns="drone6">
+    <arg name="id" value="drone6"/>
+    <arg name="command_hz" value="10"/>
+    <node pkg="quad" type="quad_node" name="quad_node" output="screen">
+        <rosparam command="load" file="$(find quad)/params/param.yaml" />
+        <param name="mesh_resource" value="file://$(find quad)/meshes/fake_drone.dae" />
+        <param name="agent_id" value="$(arg id)"/>
+        <param name="sensing_range" value="4"/>
+        <param name="command_rate" value="$(arg command_hz)"/>
+        <param name="start_x" value="-11.4126742595"/>
+        <param name="start_y" value="3.70821604632"/>
+        <param name="start_z" value="1.5"/>
+        <param name="yaw_offset" value="0.0"/>
+    </node>
+    <remap from="/$(arg id)/mavros/local_position/pose" to="/$(arg id)/mavros/odom_nwu"/>
+    <node pkg="bs_trajectory_ros" type="bs_trajectory_ros_node" name="bs_trajectory_ros_node" output="screen">
+        <param name="agent_id" value="$(arg id)"/>
+        <param name="odom_or_pose" value="odom"/>
+        <param name="traj_opt_update_hz" value="4"/>
+        <param name="cmd_update_hz" value="$(arg command_hz)"/>
+        <!-- Bspline parameters -->
+        <param name="traj_duration_secs" value="8.0"/>
+        <param name="order" value="3"/>
+        <param name="des_knot_div" value="3"/>
+        <param name="max_velocity" value="2.0"/>
+        <!-- RRT parameters -->
+        <param name="runtime_error" value="0.12"/>
+        <param name="sub_runtime_error" value="0.025"/>
+        <param name="search_radius" value="7.0"/>
+        <param name="threshold" value="0.3"/>
+        <param name="search_interval" value="7.0"/>
+        <param name="xybuffer" value="1.0"/>
+        <param name="zbuffer" value="1.0"/>
+        <param name="passage_size" value="10.0"/>
+        <rosparam param="height">[1.0, 3.0]</rosparam>
+        <!-- Optimization parameters -->
+        <param name="weight_smooth" value="1.0"/>
+        <param name="weight_feas" value="1.0"/>
+        <param name="weight_term" value="0.1"/>
+        <param name="weight_static" value="2.0"/>
+        <param name="weight_reci" value="5.0"/>
+        <param name="max_acc" value="0.4"/>
+    </node>
+</group>
+    
+
+<group ns="drone7">
+    <arg name="id" value="drone7"/>
+    <arg name="command_hz" value="10"/>
+    <node pkg="quad" type="quad_node" name="quad_node" output="screen">
+        <rosparam command="load" file="$(find quad)/params/param.yaml" />
+        <param name="mesh_resource" value="file://$(find quad)/meshes/fake_drone.dae" />
+        <param name="agent_id" value="$(arg id)"/>
+        <param name="sensing_range" value="4"/>
+        <param name="command_rate" value="$(arg command_hz)"/>
+        <param name="start_x" value="-9.70819831743"/>
+        <param name="start_y" value="7.05343075598"/>
+        <param name="start_z" value="1.5"/>
+        <param name="yaw_offset" value="0.0"/>
+    </node>
+    <remap from="/$(arg id)/mavros/local_position/pose" to="/$(arg id)/mavros/odom_nwu"/>
+    <node pkg="bs_trajectory_ros" type="bs_trajectory_ros_node" name="bs_trajectory_ros_node" output="screen">
+        <param name="agent_id" value="$(arg id)"/>
+        <param name="odom_or_pose" value="odom"/>
+        <param name="traj_opt_update_hz" value="4"/>
+        <param name="cmd_update_hz" value="$(arg command_hz)"/>
+        <!-- Bspline parameters -->
+        <param name="traj_duration_secs" value="8.0"/>
+        <param name="order" value="3"/>
+        <param name="des_knot_div" value="3"/>
+        <param name="max_velocity" value="2.0"/>
+        <!-- RRT parameters -->
+        <param name="runtime_error" value="0.12"/>
+        <param name="sub_runtime_error" value="0.025"/>
+        <param name="search_radius" value="7.0"/>
+        <param name="threshold" value="0.3"/>
+        <param name="search_interval" value="7.0"/>
+        <param name="xybuffer" value="1.0"/>
+        <param name="zbuffer" value="1.0"/>
+        <param name="passage_size" value="10.0"/>
+        <rosparam param="height">[1.0, 3.0]</rosparam>
+        <!-- Optimization parameters -->
+        <param name="weight_smooth" value="1.0"/>
+        <param name="weight_feas" value="1.0"/>
+        <param name="weight_term" value="0.1"/>
+        <param name="weight_static" value="2.0"/>
+        <param name="weight_reci" value="5.0"/>
+        <param name="max_acc" value="0.4"/>
+    </node>
+</group>
+    
+
+<group ns="drone8">
+    <arg name="id" value="drone8"/>
+    <arg name="command_hz" value="10"/>
+    <node pkg="quad" type="quad_node" name="quad_node" output="screen">
+        <rosparam command="load" file="$(find quad)/params/param.yaml" />
+        <param name="mesh_resource" value="file://$(find quad)/meshes/fake_drone.dae" />
+        <param name="agent_id" value="$(arg id)"/>
+        <param name="sensing_range" value="4"/>
+        <param name="command_rate" value="$(arg command_hz)"/>
+        <param name="start_x" value="-7.05341787519"/>
+        <param name="start_y" value="9.70820767588"/>
+        <param name="start_z" value="1.5"/>
+        <param name="yaw_offset" value="0.0"/>
+    </node>
+    <remap from="/$(arg id)/mavros/local_position/pose" to="/$(arg id)/mavros/odom_nwu"/>
+    <node pkg="bs_trajectory_ros" type="bs_trajectory_ros_node" name="bs_trajectory_ros_node" output="screen">
+        <param name="agent_id" value="$(arg id)"/>
+        <param name="odom_or_pose" value="odom"/>
+        <param name="traj_opt_update_hz" value="4"/>
+        <param name="cmd_update_hz" value="$(arg command_hz)"/>
+        <!-- Bspline parameters -->
+        <param name="traj_duration_secs" value="8.0"/>
+        <param name="order" value="3"/>
+        <param name="des_knot_div" value="3"/>
+        <param name="max_velocity" value="2.0"/>
+        <!-- RRT parameters -->
+        <param name="runtime_error" value="0.12"/>
+        <param name="sub_runtime_error" value="0.025"/>
+        <param name="search_radius" value="7.0"/>
+        <param name="threshold" value="0.3"/>
+        <param name="search_interval" value="7.0"/>
+        <param name="xybuffer" value="1.0"/>
+        <param name="zbuffer" value="1.0"/>
+        <param name="passage_size" value="10.0"/>
+        <rosparam param="height">[1.0, 3.0]</rosparam>
+        <!-- Optimization parameters -->
+        <param name="weight_smooth" value="1.0"/>
+        <param name="weight_feas" value="1.0"/>
+        <param name="weight_term" value="0.1"/>
+        <param name="weight_static" value="2.0"/>
+        <param name="weight_reci" value="5.0"/>
+        <param name="max_acc" value="0.4"/>
+    </node>
+</group>
+    
+
+<group ns="drone9">
+    <arg name="id" value="drone9"/>
+    <arg name="command_hz" value="10"/>
+    <node pkg="quad" type="quad_node" name="quad_node" output="screen">
+        <rosparam command="load" file="$(find quad)/params/param.yaml" />
+        <param name="mesh_resource" value="file://$(find quad)/meshes/fake_drone.dae" />
+        <param name="agent_id" value="$(arg id)"/>
+        <param name="sensing_range" value="4"/>
+        <param name="command_rate" value="$(arg command_hz)"/>
+        <param name="start_x" value="-3.70820090404"/>
+        <param name="start_y" value="11.4126791795"/>
+        <param name="start_z" value="1.5"/>
+        <param name="yaw_offset" value="0.0"/>
+    </node>
+    <remap from="/$(arg id)/mavros/local_position/pose" to="/$(arg id)/mavros/odom_nwu"/>
+    <node pkg="bs_trajectory_ros" type="bs_trajectory_ros_node" name="bs_trajectory_ros_node" output="screen">
+        <param name="agent_id" value="$(arg id)"/>
+        <param name="odom_or_pose" value="odom"/>
+        <param name="traj_opt_update_hz" value="4"/>
+        <param name="cmd_update_hz" value="$(arg command_hz)"/>
+        <!-- Bspline parameters -->
+        <param name="traj_duration_secs" value="8.0"/>
+        <param name="order" value="3"/>
+        <param name="des_knot_div" value="3"/>
+        <param name="max_velocity" value="2.0"/>
+        <!-- RRT parameters -->
+        <param name="runtime_error" value="0.12"/>
+        <param name="sub_runtime_error" value="0.025"/>
+        <param name="search_radius" value="7.0"/>
+        <param name="threshold" value="0.3"/>
+        <param name="search_interval" value="7.0"/>
+        <param name="xybuffer" value="1.0"/>
+        <param name="zbuffer" value="1.0"/>
+        <param name="passage_size" value="10.0"/>
+        <rosparam param="height">[1.0, 3.0]</rosparam>
+        <!-- Optimization parameters -->
+        <param name="weight_smooth" value="1.0"/>
+        <param name="weight_feas" value="1.0"/>
+        <param name="weight_term" value="0.1"/>
+        <param name="weight_static" value="2.0"/>
+        <param name="weight_reci" value="5.0"/>
+        <param name="max_acc" value="0.4"/>
+    </node>
+</group>
+    
+
+<group ns="drone10">
+    <arg name="id" value="drone10"/>
+    <arg name="command_hz" value="10"/>
+    <node pkg="quad" type="quad_node" name="quad_node" output="screen">
+        <rosparam command="load" file="$(find quad)/params/param.yaml" />
+        <param name="mesh_resource" value="file://$(find quad)/meshes/fake_drone.dae" />
+        <param name="agent_id" value="$(arg id)"/>
+        <param name="sensing_range" value="4"/>
+        <param name="command_rate" value="$(arg command_hz)"/>
+        <param name="start_x" value="0.0"/>
+        <param name="start_y" value="12.0"/>
+        <param name="start_z" value="1.5"/>
+        <param name="yaw_offset" value="0.0"/>
+    </node>
+    <remap from="/$(arg id)/mavros/local_position/pose" to="/$(arg id)/mavros/odom_nwu"/>
+    <node pkg="bs_trajectory_ros" type="bs_trajectory_ros_node" name="bs_trajectory_ros_node" output="screen">
+        <param name="agent_id" value="$(arg id)"/>
+        <param name="odom_or_pose" value="odom"/>
+        <param name="traj_opt_update_hz" value="4"/>
+        <param name="cmd_update_hz" value="$(arg command_hz)"/>
+        <!-- Bspline parameters -->
+        <param name="traj_duration_secs" value="8.0"/>
+        <param name="order" value="3"/>
+        <param name="des_knot_div" value="3"/>
+        <param name="max_velocity" value="2.0"/>
+        <!-- RRT parameters -->
+        <param name="runtime_error" value="0.12"/>
+        <param name="sub_runtime_error" value="0.025"/>
+        <param name="search_radius" value="7.0"/>
+        <param name="threshold" value="0.3"/>
+        <param name="search_interval" value="7.0"/>
+        <param name="xybuffer" value="1.0"/>
+        <param name="zbuffer" value="1.0"/>
+        <param name="passage_size" value="10.0"/>
+        <rosparam param="height">[1.0, 3.0]</rosparam>
+        <!-- Optimization parameters -->
+        <param name="weight_smooth" value="1.0"/>
+        <param name="weight_feas" value="1.0"/>
+        <param name="weight_term" value="0.1"/>
+        <param name="weight_static" value="2.0"/>
+        <param name="weight_reci" value="5.0"/>
+        <param name="max_acc" value="0.4"/>
+    </node>
+</group>
+    
+
+<group ns="drone11">
+    <arg name="id" value="drone11"/>
+    <arg name="command_hz" value="10"/>
+    <node pkg="quad" type="quad_node" name="quad_node" output="screen">
+        <rosparam command="load" file="$(find quad)/params/param.yaml" />
+        <param name="mesh_resource" value="file://$(find quad)/meshes/fake_drone.dae" />
+        <param name="agent_id" value="$(arg id)"/>
+        <param name="sensing_range" value="4"/>
+        <param name="command_rate" value="$(arg command_hz)"/>
+        <param name="start_x" value="3.70820090404"/>
+        <param name="start_y" value="11.4126791795"/>
+        <param name="start_z" value="1.5"/>
+        <param name="yaw_offset" value="0.0"/>
+    </node>
+    <remap from="/$(arg id)/mavros/local_position/pose" to="/$(arg id)/mavros/odom_nwu"/>
+    <node pkg="bs_trajectory_ros" type="bs_trajectory_ros_node" name="bs_trajectory_ros_node" output="screen">
+        <param name="agent_id" value="$(arg id)"/>
+        <param name="odom_or_pose" value="odom"/>
+        <param name="traj_opt_update_hz" value="4"/>
+        <param name="cmd_update_hz" value="$(arg command_hz)"/>
+        <!-- Bspline parameters -->
+        <param name="traj_duration_secs" value="8.0"/>
+        <param name="order" value="3"/>
+        <param name="des_knot_div" value="3"/>
+        <param name="max_velocity" value="2.0"/>
+        <!-- RRT parameters -->
+        <param name="runtime_error" value="0.12"/>
+        <param name="sub_runtime_error" value="0.025"/>
+        <param name="search_radius" value="7.0"/>
+        <param name="threshold" value="0.3"/>
+        <param name="search_interval" value="7.0"/>
+        <param name="xybuffer" value="1.0"/>
+        <param name="zbuffer" value="1.0"/>
+        <param name="passage_size" value="10.0"/>
+        <rosparam param="height">[1.0, 3.0]</rosparam>
+        <!-- Optimization parameters -->
+        <param name="weight_smooth" value="1.0"/>
+        <param name="weight_feas" value="1.0"/>
+        <param name="weight_term" value="0.1"/>
+        <param name="weight_static" value="2.0"/>
+        <param name="weight_reci" value="5.0"/>
+        <param name="max_acc" value="0.4"/>
+    </node>
+</group>
+    
+
+<group ns="drone12">
+    <arg name="id" value="drone12"/>
+    <arg name="command_hz" value="10"/>
+    <node pkg="quad" type="quad_node" name="quad_node" output="screen">
+        <rosparam command="load" file="$(find quad)/params/param.yaml" />
+        <param name="mesh_resource" value="file://$(find quad)/meshes/fake_drone.dae" />
+        <param name="agent_id" value="$(arg id)"/>
+        <param name="sensing_range" value="4"/>
+        <param name="command_rate" value="$(arg command_hz)"/>
+        <param name="start_x" value="7.05341787519"/>
+        <param name="start_y" value="9.70820767588"/>
+        <param name="start_z" value="1.5"/>
+        <param name="yaw_offset" value="0.0"/>
+    </node>
+    <remap from="/$(arg id)/mavros/local_position/pose" to="/$(arg id)/mavros/odom_nwu"/>
+    <node pkg="bs_trajectory_ros" type="bs_trajectory_ros_node" name="bs_trajectory_ros_node" output="screen">
+        <param name="agent_id" value="$(arg id)"/>
+        <param name="odom_or_pose" value="odom"/>
+        <param name="traj_opt_update_hz" value="4"/>
+        <param name="cmd_update_hz" value="$(arg command_hz)"/>
+        <!-- Bspline parameters -->
+        <param name="traj_duration_secs" value="8.0"/>
+        <param name="order" value="3"/>
+        <param name="des_knot_div" value="3"/>
+        <param name="max_velocity" value="2.0"/>
+        <!-- RRT parameters -->
+        <param name="runtime_error" value="0.12"/>
+        <param name="sub_runtime_error" value="0.025"/>
+        <param name="search_radius" value="7.0"/>
+        <param name="threshold" value="0.3"/>
+        <param name="search_interval" value="7.0"/>
+        <param name="xybuffer" value="1.0"/>
+        <param name="zbuffer" value="1.0"/>
+        <param name="passage_size" value="10.0"/>
+        <rosparam param="height">[1.0, 3.0]</rosparam>
+        <!-- Optimization parameters -->
+        <param name="weight_smooth" value="1.0"/>
+        <param name="weight_feas" value="1.0"/>
+        <param name="weight_term" value="0.1"/>
+        <param name="weight_static" value="2.0"/>
+        <param name="weight_reci" value="5.0"/>
+        <param name="max_acc" value="0.4"/>
+    </node>
+</group>
+    
+
+<group ns="drone13">
+    <arg name="id" value="drone13"/>
+    <arg name="command_hz" value="10"/>
+    <node pkg="quad" type="quad_node" name="quad_node" output="screen">
+        <rosparam command="load" file="$(find quad)/params/param.yaml" />
+        <param name="mesh_resource" value="file://$(find quad)/meshes/fake_drone.dae" />
+        <param name="agent_id" value="$(arg id)"/>
+        <param name="sensing_range" value="4"/>
+        <param name="command_rate" value="$(arg command_hz)"/>
+        <param name="start_x" value="9.70819831743"/>
+        <param name="start_y" value="7.05343075598"/>
+        <param name="start_z" value="1.5"/>
+        <param name="yaw_offset" value="0.0"/>
+    </node>
+    <remap from="/$(arg id)/mavros/local_position/pose" to="/$(arg id)/mavros/odom_nwu"/>
+    <node pkg="bs_trajectory_ros" type="bs_trajectory_ros_node" name="bs_trajectory_ros_node" output="screen">
+        <param name="agent_id" value="$(arg id)"/>
+        <param name="odom_or_pose" value="odom"/>
+        <param name="traj_opt_update_hz" value="4"/>
+        <param name="cmd_update_hz" value="$(arg command_hz)"/>
+        <!-- Bspline parameters -->
+        <param name="traj_duration_secs" value="8.0"/>
+        <param name="order" value="3"/>
+        <param name="des_knot_div" value="3"/>
+        <param name="max_velocity" value="2.0"/>
+        <!-- RRT parameters -->
+        <param name="runtime_error" value="0.12"/>
+        <param name="sub_runtime_error" value="0.025"/>
+        <param name="search_radius" value="7.0"/>
+        <param name="threshold" value="0.3"/>
+        <param name="search_interval" value="7.0"/>
+        <param name="xybuffer" value="1.0"/>
+        <param name="zbuffer" value="1.0"/>
+        <param name="passage_size" value="10.0"/>
+        <rosparam param="height">[1.0, 3.0]</rosparam>
+        <!-- Optimization parameters -->
+        <param name="weight_smooth" value="1.0"/>
+        <param name="weight_feas" value="1.0"/>
+        <param name="weight_term" value="0.1"/>
+        <param name="weight_static" value="2.0"/>
+        <param name="weight_reci" value="5.0"/>
+        <param name="max_acc" value="0.4"/>
+    </node>
+</group>
+    
+
+<group ns="drone14">
+    <arg name="id" value="drone14"/>
+    <arg name="command_hz" value="10"/>
+    <node pkg="quad" type="quad_node" name="quad_node" output="screen">
+        <rosparam command="load" file="$(find quad)/params/param.yaml" />
+        <param name="mesh_resource" value="file://$(find quad)/meshes/fake_drone.dae" />
+        <param name="agent_id" value="$(arg id)"/>
+        <param name="sensing_range" value="4"/>
+        <param name="command_rate" value="$(arg command_hz)"/>
+        <param name="start_x" value="11.4126742595"/>
+        <param name="start_y" value="3.70821604632"/>
+        <param name="start_z" value="1.5"/>
+        <param name="yaw_offset" value="0.0"/>
+    </node>
+    <remap from="/$(arg id)/mavros/local_position/pose" to="/$(arg id)/mavros/odom_nwu"/>
+    <node pkg="bs_trajectory_ros" type="bs_trajectory_ros_node" name="bs_trajectory_ros_node" output="screen">
+        <param name="agent_id" value="$(arg id)"/>
+        <param name="odom_or_pose" value="odom"/>
+        <param name="traj_opt_update_hz" value="4"/>
+        <param name="cmd_update_hz" value="$(arg command_hz)"/>
+        <!-- Bspline parameters -->
+        <param name="traj_duration_secs" value="8.0"/>
+        <param name="order" value="3"/>
+        <param name="des_knot_div" value="3"/>
+        <param name="max_velocity" value="2.0"/>
+        <!-- RRT parameters -->
+        <param name="runtime_error" value="0.12"/>
+        <param name="sub_runtime_error" value="0.025"/>
+        <param name="search_radius" value="7.0"/>
+        <param name="threshold" value="0.3"/>
+        <param name="search_interval" value="7.0"/>
+        <param name="xybuffer" value="1.0"/>
+        <param name="zbuffer" value="1.0"/>
+        <param name="passage_size" value="10.0"/>
+        <rosparam param="height">[1.0, 3.0]</rosparam>
+        <!-- Optimization parameters -->
+        <param name="weight_smooth" value="1.0"/>
+        <param name="weight_feas" value="1.0"/>
+        <param name="weight_term" value="0.1"/>
+        <param name="weight_static" value="2.0"/>
+        <param name="weight_reci" value="5.0"/>
+        <param name="max_acc" value="0.4"/>
+    </node>
+</group>
+    
+
+<group ns="drone15">
+    <arg name="id" value="drone15"/>
+    <arg name="command_hz" value="10"/>
+    <node pkg="quad" type="quad_node" name="quad_node" output="screen">
+        <rosparam command="load" file="$(find quad)/params/param.yaml" />
+        <param name="mesh_resource" value="file://$(find quad)/meshes/fake_drone.dae" />
+        <param name="agent_id" value="$(arg id)"/>
+        <param name="sensing_range" value="4"/>
+        <param name="command_rate" value="$(arg command_hz)"/>
+        <param name="start_x" value="12.0"/>
+        <param name="start_y" value="1.59215387655e-05"/>
+        <param name="start_z" value="1.5"/>
+        <param name="yaw_offset" value="0.0"/>
+    </node>
+    <remap from="/$(arg id)/mavros/local_position/pose" to="/$(arg id)/mavros/odom_nwu"/>
+    <node pkg="bs_trajectory_ros" type="bs_trajectory_ros_node" name="bs_trajectory_ros_node" output="screen">
+        <param name="agent_id" value="$(arg id)"/>
+        <param name="odom_or_pose" value="odom"/>
+        <param name="traj_opt_update_hz" value="4"/>
+        <param name="cmd_update_hz" value="$(arg command_hz)"/>
+        <!-- Bspline parameters -->
+        <param name="traj_duration_secs" value="8.0"/>
+        <param name="order" value="3"/>
+        <param name="des_knot_div" value="3"/>
+        <param name="max_velocity" value="2.0"/>
+        <!-- RRT parameters -->
+        <param name="runtime_error" value="0.12"/>
+        <param name="sub_runtime_error" value="0.025"/>
+        <param name="search_radius" value="7.0"/>
+        <param name="threshold" value="0.3"/>
+        <param name="search_interval" value="7.0"/>
+        <param name="xybuffer" value="1.0"/>
+        <param name="zbuffer" value="1.0"/>
+        <param name="passage_size" value="10.0"/>
+        <rosparam param="height">[1.0, 3.0]</rosparam>
+        <!-- Optimization parameters -->
+        <param name="weight_smooth" value="1.0"/>
+        <param name="weight_feas" value="1.0"/>
+        <param name="weight_term" value="0.1"/>
+        <param name="weight_static" value="2.0"/>
+        <param name="weight_reci" value="5.0"/>
+        <param name="max_acc" value="0.4"/>
+    </node>
+</group>
+    
+
+<group ns="drone16">
+    <arg name="id" value="drone16"/>
+    <arg name="command_hz" value="10"/>
+    <node pkg="quad" type="quad_node" name="quad_node" output="screen">
+        <rosparam command="load" file="$(find quad)/params/param.yaml" />
+        <param name="mesh_resource" value="file://$(find quad)/meshes/fake_drone.dae" />
+        <param name="agent_id" value="$(arg id)"/>
+        <param name="sensing_range" value="4"/>
+        <param name="command_rate" value="$(arg command_hz)"/>
+        <param name="start_x" value="11.4126840996"/>
+        <param name="start_y" value="-3.70818576175"/>
+        <param name="start_z" value="1.5"/>
+        <param name="yaw_offset" value="0.0"/>
+    </node>
+    <remap from="/$(arg id)/mavros/local_position/pose" to="/$(arg id)/mavros/odom_nwu"/>
+    <node pkg="bs_trajectory_ros" type="bs_trajectory_ros_node" name="bs_trajectory_ros_node" output="screen">
+        <param name="agent_id" value="$(arg id)"/>
+        <param name="odom_or_pose" value="odom"/>
+        <param name="traj_opt_update_hz" value="4"/>
+        <param name="cmd_update_hz" value="$(arg command_hz)"/>
+        <!-- Bspline parameters -->
+        <param name="traj_duration_secs" value="8.0"/>
+        <param name="order" value="3"/>
+        <param name="des_knot_div" value="3"/>
+        <param name="max_velocity" value="2.0"/>
+        <!-- RRT parameters -->
+        <param name="runtime_error" value="0.12"/>
+        <param name="sub_runtime_error" value="0.025"/>
+        <param name="search_radius" value="7.0"/>
+        <param name="threshold" value="0.3"/>
+        <param name="search_interval" value="7.0"/>
+        <param name="xybuffer" value="1.0"/>
+        <param name="zbuffer" value="1.0"/>
+        <param name="passage_size" value="10.0"/>
+        <rosparam param="height">[1.0, 3.0]</rosparam>
+        <!-- Optimization parameters -->
+        <param name="weight_smooth" value="1.0"/>
+        <param name="weight_feas" value="1.0"/>
+        <param name="weight_term" value="0.1"/>
+        <param name="weight_static" value="2.0"/>
+        <param name="weight_reci" value="5.0"/>
+        <param name="max_acc" value="0.4"/>
+    </node>
+</group>
+    
+
+<group ns="drone17">
+    <arg name="id" value="drone17"/>
+    <arg name="command_hz" value="10"/>
+    <node pkg="quad" type="quad_node" name="quad_node" output="screen">
+        <rosparam command="load" file="$(find quad)/params/param.yaml" />
+        <param name="mesh_resource" value="file://$(find quad)/meshes/fake_drone.dae" />
+        <param name="agent_id" value="$(arg id)"/>
+        <param name="sensing_range" value="4"/>
+        <param name="command_rate" value="$(arg command_hz)"/>
+        <param name="start_x" value="9.70821703431"/>
+        <param name="start_y" value="-7.05340499438"/>
+        <param name="start_z" value="1.5"/>
+        <param name="yaw_offset" value="0.0"/>
+    </node>
+    <remap from="/$(arg id)/mavros/local_position/pose" to="/$(arg id)/mavros/odom_nwu"/>
+    <node pkg="bs_trajectory_ros" type="bs_trajectory_ros_node" name="bs_trajectory_ros_node" output="screen">
+        <param name="agent_id" value="$(arg id)"/>
+        <param name="odom_or_pose" value="odom"/>
+        <param name="traj_opt_update_hz" value="4"/>
+        <param name="cmd_update_hz" value="$(arg command_hz)"/>
+        <!-- Bspline parameters -->
+        <param name="traj_duration_secs" value="8.0"/>
+        <param name="order" value="3"/>
+        <param name="des_knot_div" value="3"/>
+        <param name="max_velocity" value="2.0"/>
+        <!-- RRT parameters -->
+        <param name="runtime_error" value="0.12"/>
+        <param name="sub_runtime_error" value="0.025"/>
+        <param name="search_radius" value="7.0"/>
+        <param name="threshold" value="0.3"/>
+        <param name="search_interval" value="7.0"/>
+        <param name="xybuffer" value="1.0"/>
+        <param name="zbuffer" value="1.0"/>
+        <param name="passage_size" value="10.0"/>
+        <rosparam param="height">[1.0, 3.0]</rosparam>
+        <!-- Optimization parameters -->
+        <param name="weight_smooth" value="1.0"/>
+        <param name="weight_feas" value="1.0"/>
+        <param name="weight_term" value="0.1"/>
+        <param name="weight_static" value="2.0"/>
+        <param name="weight_reci" value="5.0"/>
+        <param name="max_acc" value="0.4"/>
+    </node>
+</group>
+    
+
+<group ns="drone18">
+    <arg name="id" value="drone18"/>
+    <arg name="command_hz" value="10"/>
+    <node pkg="quad" type="quad_node" name="quad_node" output="screen">
+        <rosparam command="load" file="$(find quad)/params/param.yaml" />
+        <param name="mesh_resource" value="file://$(find quad)/meshes/fake_drone.dae" />
+        <param name="agent_id" value="$(arg id)"/>
+        <param name="sensing_range" value="4"/>
+        <param name="command_rate" value="$(arg command_hz)"/>
+        <param name="start_x" value="7.05344363677"/>
+        <param name="start_y" value="-9.70818895896"/>
+        <param name="start_z" value="1.5"/>
+        <param name="yaw_offset" value="0.0"/>
+    </node>
+    <remap from="/$(arg id)/mavros/local_position/pose" to="/$(arg id)/mavros/odom_nwu"/>
+    <node pkg="bs_trajectory_ros" type="bs_trajectory_ros_node" name="bs_trajectory_ros_node" output="screen">
+        <param name="agent_id" value="$(arg id)"/>
+        <param name="odom_or_pose" value="odom"/>
+        <param name="traj_opt_update_hz" value="4"/>
+        <param name="cmd_update_hz" value="$(arg command_hz)"/>
+        <!-- Bspline parameters -->
+        <param name="traj_duration_secs" value="8.0"/>
+        <param name="order" value="3"/>
+        <param name="des_knot_div" value="3"/>
+        <param name="max_velocity" value="2.0"/>
+        <!-- RRT parameters -->
+        <param name="runtime_error" value="0.12"/>
+        <param name="sub_runtime_error" value="0.025"/>
+        <param name="search_radius" value="7.0"/>
+        <param name="threshold" value="0.3"/>
+        <param name="search_interval" value="7.0"/>
+        <param name="xybuffer" value="1.0"/>
+        <param name="zbuffer" value="1.0"/>
+        <param name="passage_size" value="10.0"/>
+        <rosparam param="height">[1.0, 3.0]</rosparam>
+        <!-- Optimization parameters -->
+        <param name="weight_smooth" value="1.0"/>
+        <param name="weight_feas" value="1.0"/>
+        <param name="weight_term" value="0.1"/>
+        <param name="weight_static" value="2.0"/>
+        <param name="weight_reci" value="5.0"/>
+        <param name="max_acc" value="0.4"/>
+    </node>
+</group>
+    
+
+<group ns="drone19">
+    <arg name="id" value="drone19"/>
+    <arg name="command_hz" value="10"/>
+    <node pkg="quad" type="quad_node" name="quad_node" output="screen">
+        <rosparam command="load" file="$(find quad)/params/param.yaml" />
+        <param name="mesh_resource" value="file://$(find quad)/meshes/fake_drone.dae" />
+        <param name="agent_id" value="$(arg id)"/>
+        <param name="sensing_range" value="4"/>
+        <param name="command_rate" value="$(arg command_hz)"/>
+        <param name="start_x" value="3.7082311886"/>
+        <param name="start_y" value="-11.4126693395"/>
+        <param name="start_z" value="1.5"/>
+        <param name="yaw_offset" value="0.0"/>
+    </node>
+    <remap from="/$(arg id)/mavros/local_position/pose" to="/$(arg id)/mavros/odom_nwu"/>
+    <node pkg="bs_trajectory_ros" type="bs_trajectory_ros_node" name="bs_trajectory_ros_node" output="screen">
+        <param name="agent_id" value="$(arg id)"/>
+        <param name="odom_or_pose" value="odom"/>
+        <param name="traj_opt_update_hz" value="4"/>
+        <param name="cmd_update_hz" value="$(arg command_hz)"/>
+        <!-- Bspline parameters -->
+        <param name="traj_duration_secs" value="8.0"/>
+        <param name="order" value="3"/>
+        <param name="des_knot_div" value="3"/>
+        <param name="max_velocity" value="2.0"/>
+        <!-- RRT parameters -->
+        <param name="runtime_error" value="0.12"/>
+        <param name="sub_runtime_error" value="0.025"/>
+        <param name="search_radius" value="7.0"/>
+        <param name="threshold" value="0.3"/>
+        <param name="search_interval" value="7.0"/>
+        <param name="xybuffer" value="1.0"/>
+        <param name="zbuffer" value="1.0"/>
+        <param name="passage_size" value="10.0"/>
+        <rosparam param="height">[1.0, 3.0]</rosparam>
+        <!-- Optimization parameters -->
+        <param name="weight_smooth" value="1.0"/>
+        <param name="weight_feas" value="1.0"/>
+        <param name="weight_term" value="0.1"/>
+        <param name="weight_static" value="2.0"/>
+        <param name="weight_reci" value="5.0"/>
+        <param name="max_acc" value="0.4"/>
+    </node>
+</group>
+    
+
+  </launch>

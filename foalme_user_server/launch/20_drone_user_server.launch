@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<launch>
+
+<!-- <arg name="formation_type" value="left-right-facing"/> -->
+<arg name="formation_type" value="top-down-facing"/>
+<!-- <arg name="formation_type" value="antipodal"/> -->
+<node pkg="foalme_user_server" type="foalme_user_server_node" name="foalme_user_server_node" output="screen">
+    <!-- <param name="file_location" value="$(find foalme_user_server)/launch/mockmap0.pcd" /> -->
+    <!-- <param name="file_location" value="$(find foalme_user_server)/launch/sparse_obstacle_map.pcd" /> -->
+    <param name="file_location" value="$(find foalme_user_server)/launch/wall_with_window.pcd" />
+    <!-- <param name="file_location" value="" /> -->
+    <param name="tracker_timer_hz" value="5.0"/>
+    <param name="cloud_timer_hz" value="12.0"/>
+    <param name="single_or_multi" value="multi"/>
+    <param name="formation" value="$(arg formation_type)"/>
+    <param name="agents" value="20"/>
+    <rosparam param="waypoints">
+        [0.0, -30.0, 2.0, 
+        0.0, 20.0, 2.0,
+        0.0, -30.0, 2.0,
+        0.0, 20.0, 2.0]</rosparam>
+</node>
+
+<include file="$(find foalme_user_server)/launch/generated/generated_$(arg formation_type)_20.launch" />
+
+<node name="rviz" pkg="rviz" type="rviz" args="-d $(find quad)/rviz/generated_display_20.rviz"/>
+
+</launch>
