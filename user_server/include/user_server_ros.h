@@ -113,7 +113,7 @@ class user_server_ros
                     {
                         agent_waypoints[i].waypoints.push_back(
                             Eigen::Vector3d(
-                            agents[i].pos.x(), 
+                            -agents[i].pos.x(), 
                             -agents[i].pos.y(), 
                             agents[i].pos.z()));
                     }
@@ -136,7 +136,7 @@ class user_server_ros
                         agent_waypoints[i].waypoints.push_back(
                             Eigen::Vector3d(
                             -agents[i].pos.x(), 
-                            agents[i].pos.y(), 
+                            -agents[i].pos.y(), 
                             agents[i].pos.z()));
                     }
                 }
@@ -194,9 +194,21 @@ class user_server_ros
                 _goal_pub.publish(goal);
                 
                 start_time = ros::Time::now();
-                while ((ros::Time::now() - start_time).toSec() < 0.3)
+                if (agents[i].id == 0)
                 {
-                    // Wait
+                    // Somehow agent 0 will suffer from not receiving the command
+                    // Hence, need to wait awhile longer
+                    while ((ros::Time::now() - start_time).toSec() < 0.25)
+                    {
+                        // Wait
+                    } 
+                }
+                else
+                {
+                    while ((ros::Time::now() - start_time).toSec() < 0.01)
+                    {
+                        // Wait
+                    }
                 }
                 
                 std::cout << "[user_server] " << KGRN << 
