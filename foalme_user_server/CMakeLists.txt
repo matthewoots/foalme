@@ -30,11 +30,13 @@ catkin_package(
 
 include_directories(
   include
+  CSVWriter/include
   ${catkin_INCLUDE_DIRS}
   ${EIGEN3_INCLUDE_DIR}
 )
 
 add_executable (${PROJECT_NAME}_node 
+  src/foalme_user_server_ros.cpp
   src/main.cpp
 )
 

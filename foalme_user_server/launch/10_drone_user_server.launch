@@ -9,6 +9,7 @@
     <!-- <param name="file_location" value="" /> -->
     <param name="tracker_timer_hz" value="5.0"/>
     <param name="cloud_timer_hz" value="12.0"/>
+    <param name="logging_timer_hz" value="5.0"/>
     <param name="single_or_multi" value="multi"/>
     <param name="formation" value="$(arg formation_type)"/>
     <param name="agents" value="10"/>

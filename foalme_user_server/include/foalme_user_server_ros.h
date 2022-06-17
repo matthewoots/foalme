@@ -1,3 +1,27 @@
+/*
+ * foalme_user_server_ros.h
+ *
+ * ---------------------------------------------------------------------
+ * Copyright (C) 2022 Matthew (matthewoots at gmail.com)
+ *
+ *  This program is free software; you can redistribute it and/or
+ *  modify it under the terms of the GNU General Public License
+ *  as published by the Free Software Foundation; either version 2
+ *  of the License, or (at your option) any later version.
+ *
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  You should have received a copy of the GNU General Public License
+ *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * ---------------------------------------------------------------------
+ *
+ * 
+ * 
+ */
+
 #ifndef USER_SERVER_ROS_H
 #define USER_SERVER_ROS_H
 
@@ -31,6 +55,9 @@
 
 #include <tf/tf.h>
 
+#include <CSVWriter.h>
+#include "boost/date_time/posix_time/posix_time.hpp"
+
 #define KNRM  "\033[0m"
 #define KRED  "\033[31m"
 #define KGRN  "\033[32m"
@@ -51,7 +78,9 @@ class user_server_ros
         {
             int id;
             Eigen::Vector3d pos;
+            Eigen::Vector3d vel;
             Eigen::Quaterniond q;
+            double distance;
             ros::Time t;
             int mission;
         };
@@ -68,17 +97,19 @@ class user_server_ros
         
         ros::Subscriber _pose_sub;
 
-        ros::Timer _target_tracker_timer, _cloud_timer;
+        ros::Timer _target_tracker_timer, _cloud_timer, _logging_timer;
 
         std::string _file_location, _single_or_multi, _formation;
 
+        vector<std::string> _log_file_name;
+
         pcl::PointCloud<pcl::PointXYZ>::Ptr global_cloud;  
 
-        bool _valid_cloud;
+        bool _valid_cloud, _logger_not_started = true;
 
         int _agent_number;
 
-        double _tracker_timer_hz, _cloud_hz;
+        double _tracker_timer_hz, _cloud_hz, _logging_hz;
 
         std::mutex agents_mutex; 
 
@@ -91,215 +122,22 @@ class user_server_ros
 
         ros::Time module_start_time;
 
-        void target_update_timer(const ros::TimerEvent &)
-        {
-            std::lock_guard<std::mutex> agents_lock(agents_mutex);
-            if ((ros::Time::now() - module_start_time).toSec() < 3.0)
-            {
-                return;
-            }
-            
-            if (agent_waypoints[0].waypoints.empty() && !agents.empty() && _agent_number > 1)
-            {
-                for (int i = 0; i < agents.size(); i++)
-                {
-                    // 1. antipodal
-                    // 2. horizontal-line
-                    // 3. vertical-line
-                    // 4. top-down-facing
-                    // 5. left-right-facing
-                    if (_formation.compare("left-right-facing") == 0 || 
-                        _formation.compare("vertical-line") == 0)
-                    {
-                        agent_waypoints[i].waypoints.push_back(
-                            Eigen::Vector3d(
-                            -agents[i].pos.x(), 
-                            -agents[i].pos.y(), 
-                            agents[i].pos.z()));
-                    }
+        void target_update_timer(const ros::TimerEvent &);
 
-                    if (_formation.compare("antipodal") == 0)
-                    {
-                        Eigen::Vector3d opp_vector = Eigen::Vector3d(
-                            -agents[i].pos.x(), 
-                            -agents[i].pos.y(), 
-                            agents[i].pos.z());
-                        
-                        double opp_vector_norm = opp_vector.norm();
+        void cloud_update_timer(const ros::TimerEvent &);
 
-                        agent_waypoints[i].waypoints.push_back(opp_vector);
-                    }
-
-                    if (_formation.compare("top-down-facing") == 0 || 
-                        _formation.compare("horizontal-line") == 0)
-                    {
-                        agent_waypoints[i].waypoints.push_back(
-                            Eigen::Vector3d(
-                            -agents[i].pos.x(), 
-                            -agents[i].pos.y(), 
-                            agents[i].pos.z()));
-                    }
-                }
-            }
-
-            if (agents.empty())
-                return;
-            
-            for (int i = 0; i < agents.size(); i++)
-            {
-                std::string _id;
-                _id = "drone" + to_string(agents[i].id);
-
-                if (agents[i].mission >= 0)
-                {
-                    if ((agent_waypoints[agents[i].id].waypoints[agents[i].mission] - agents[i].pos).norm() >= 0.3)
-                        continue;
-                }
-                
-                /** @brief Publisher that publishes goal vector */
-                _goal_pub = _nh.advertise<geometry_msgs::PoseStamped>("/" + _id + "/goal", 40, true);
-                ros::Time start_time = ros::Time::now();
-                bool early_break = false;
-                
-                if (agent_waypoints[agents[i].id].waypoints.empty())
-                    continue;
-
-                if (agents[i].mission < (int)agent_waypoints[agents[i].id].waypoints.size()-1)
-                {
-                    agents[i].mission = agents[i].mission + 1;
-                }
-                else
-                    return;
-                
-                geometry_msgs::PoseStamped goal;
-                goal.pose.position.x = agent_waypoints[agents[i].id].waypoints[agents[i].mission].x(); 
-                goal.pose.position.y = agent_waypoints[agents[i].id].waypoints[agents[i].mission].y(); 
-                goal.pose.position.z = agent_waypoints[agents[i].id].waypoints[agents[i].mission].z();
-                
-
-                while (_goal_pub.getNumSubscribers() < 1) {
-                    // wait for a connection to publisher
-                    // you can do whatever you like here or simply do nothing
-                    if ((ros::Time::now() - start_time).toSec() > 2.0)
-                    {
-                        early_break = true;
-                        break;
-                    }
-                }
-
-                if (early_break)
-                    continue;
-
-                _goal_pub.publish(goal);
-                _goal_pub.publish(goal);
-                
-                start_time = ros::Time::now();
-                if (agents[i].id == 0)
-                {
-                    // Somehow agent 0 will suffer from not receiving the command
-                    // Hence, need to wait awhile longer
-                    while ((ros::Time::now() - start_time).toSec() < 0.25)
-                    {
-                        // Wait
-                    } 
-                }
-                else
-                {
-                    while ((ros::Time::now() - start_time).toSec() < 0.01)
-                    {
-                        // Wait
-                    }
-                }
-                
-                std::cout << "[user_server] " << KGRN << 
-                    "published waypoint " << agents[i].mission << KNRM << std::endl;
-                
-            }
-        }
-
-        void cloud_update_timer(const ros::TimerEvent &)
-        {
-            if (!_valid_cloud)
-                return;
-            
-            cloud_msg.header.frame_id = "/world";
-            _pcl_pub.publish(cloud_msg);
-
-        }
+        void logging_timer(const ros::TimerEvent &);
         
-        void pose_callback(const sensor_msgs::JointState::ConstPtr &msg)
-        {
-            int vector_index = -1;
-            Affine3d nwu_transform = Affine3d::Identity();
-            // Local position in NWU frame
-            nwu_transform.translation() = Vector3d(
-                msg->position[0], msg->position[1], msg->position[2]);
-            // Local rotation in NWU frame
-            // msg->pose.effort.w
-            // msg->pose.effort.x
-            // msg->pose.effort.y
-            // msg->pose.effort.z
-            nwu_transform.linear() = Quaterniond(
-                msg->effort[0], msg->effort[1], msg->effort[2], msg->effort[3]).toRotationMatrix();
-
-            std::lock_guard<std::mutex> agents_lock(agents_mutex);
-
-            if (!agents.empty())
-            {
-                int idx = stoi(msg->name[0]);
-                for (int i = 0; i < agents.size(); i++)
-                {
-                    if (idx == agents[i].id)
-                    {
-                        vector_index = i;
-                        break;
-                    }
-                }
-
-                if (vector_index < 0)
-                {
-                    agent_state new_agent;
-                    new_agent.id = idx;
-                    new_agent.pos = nwu_transform.translation();
-                    new_agent.q = nwu_transform.linear();
-                    new_agent.t = msg->header.stamp;
-                    new_agent.mission = -1;
-
-                    agents.push_back(new_agent);
-                    return;
-                }
-
-                if ((msg->header.stamp - agents[idx].t).toSec() > 0)
-                {
-                    agents[idx].pos = nwu_transform.translation();
-                    agents[idx].q = nwu_transform.linear();
-                    agents[idx].t = msg->header.stamp;
-                    return;
-                }
-
-            }
-            else
-            {
-                int idx = stoi(msg->name[0]);
-                agent_state new_agent;
-                new_agent.id = idx;
-                new_agent.pos = nwu_transform.translation();
-                new_agent.q = nwu_transform.linear();
-                new_agent.t = msg->header.stamp;
-                new_agent.mission = -1;
-                
-                agents.push_back(new_agent);
-            }
-
-        }
+        void pose_callback(const sensor_msgs::JointState::ConstPtr &msg);
 
     public:
 
         user_server_ros(ros::NodeHandle &nodeHandle) : _nh(nodeHandle)
         {
             _nh.param<std::string>("file_location", _file_location, "cloud.pcd");
-            _nh.param<double>("tracker_timer_hz", _tracker_timer_hz, 5.0);
+            _nh.param<double>("tracker_timer_hz", _tracker_timer_hz, 2.0);
             _nh.param<double>("cloud_timer_hz", _cloud_hz, 2.0);
+            _nh.param<double>("logging_timer_hz", _logging_hz, 2.0);
             _nh.param<int>("agents", _agent_number, 1);
             _nh.param<std::string>("single_or_multi", _single_or_multi, "single");
             _nh.param<std::string>("formation", _formation, "antipodal");
@@ -362,6 +200,10 @@ class user_server_ros
             _cloud_timer = _nh.createTimer(
                 ros::Duration(1/_cloud_hz), &user_server_ros::cloud_update_timer, this, false, false);
 
+            /** @brief Timer that handles logging */
+		    _logging_timer = _nh.createTimer(
+                ros::Duration(1/_logging_hz), &user_server_ros::logging_timer, this, false, false);
+
             pcl::PointCloud<pcl::PointXYZ>::Ptr cloud(new pcl::PointCloud<pcl::PointXYZ>); // Initialize the point cloud
 
             std::cout << "[user_server] Opening pcd file from " << KGRN << _file_location << KNRM << " ..." << std::endl;
@@ -384,6 +226,26 @@ class user_server_ros
             module_start_time = ros::Time::now();
             _target_tracker_timer.start();
             _cloud_timer.start();
+
+            std::string path(getenv("HOME"));
+            path += "/Documents/";
+
+            for (int i = 0; i < _agent_number; i++)
+            {
+                _log_file_name.push_back(path + "drone" + to_string(i) + "_log_file.csv");
+                // Write headers into the file
+                CSVWriter csv;
+                csv << "time" << "computation_time" << "speed" << "total_distance" << "collision_detection";
+                csv.writeToFile(_log_file_name[i]);
+
+                agent_state new_agent;
+                new_agent.distance = 0.0;
+                new_agent.id = i;
+                new_agent.mission = -1;
+                new_agent.t = ros::Time::now();
+                new_agent.pos = Eigen::Vector3d(sqrt(-1), sqrt(-1), sqrt(-1));
+                agents.push_back(new_agent);
+            }
 
         }
 

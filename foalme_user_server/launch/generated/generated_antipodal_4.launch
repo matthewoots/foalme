@@ -24,7 +24,7 @@
         <!-- Bspline parameters -->
         <param name="traj_duration_secs" value="8.0"/>
         <param name="order" value="3"/>
-        <param name="des_knot_div" value="3"/>
+        <param name="des_knot_div" value="5"/>
         <param name="max_velocity" value="2.0"/>
         <!-- RRT parameters -->
         <param name="runtime_error" value="0.12"/>
@@ -32,15 +32,15 @@
         <param name="search_radius" value="7.0"/>
         <param name="threshold" value="0.3"/>
         <param name="search_interval" value="7.0"/>
-        <param name="xybuffer" value="1.0"/>
-        <param name="zbuffer" value="1.0"/>
-        <param name="passage_size" value="10.0"/>
+        <param name="xybuffer" value="2.5"/>
+        <param name="zbuffer" value="1.5"/>
+        <param name="passage_size" value="9.0"/>
         <rosparam param="height">[1.0, 3.0]</rosparam>
         <!-- Optimization parameters -->
         <param name="weight_smooth" value="1.0"/>
-        <param name="weight_feas" value="1.0"/>
+        <param name="weight_feas" value="2.0"/>
         <param name="weight_term" value="0.1"/>
-        <param name="weight_static" value="2.0"/>
+        <param name="weight_static" value="4.0"/>
         <param name="weight_reci" value="5.0"/>
         <param name="max_acc" value="0.4"/>
     </node>
@@ -70,7 +70,7 @@
         <!-- Bspline parameters -->
         <param name="traj_duration_secs" value="8.0"/>
         <param name="order" value="3"/>
-        <param name="des_knot_div" value="3"/>
+        <param name="des_knot_div" value="5"/>
         <param name="max_velocity" value="2.0"/>
         <!-- RRT parameters -->
         <param name="runtime_error" value="0.12"/>
@@ -78,15 +78,15 @@
         <param name="search_radius" value="7.0"/>
         <param name="threshold" value="0.3"/>
         <param name="search_interval" value="7.0"/>
-        <param name="xybuffer" value="1.0"/>
-        <param name="zbuffer" value="1.0"/>
-        <param name="passage_size" value="10.0"/>
+        <param name="xybuffer" value="2.5"/>
+        <param name="zbuffer" value="1.5"/>
+        <param name="passage_size" value="9.0"/>
         <rosparam param="height">[1.0, 3.0]</rosparam>
         <!-- Optimization parameters -->
         <param name="weight_smooth" value="1.0"/>
-        <param name="weight_feas" value="1.0"/>
+        <param name="weight_feas" value="2.0"/>
         <param name="weight_term" value="0.1"/>
-        <param name="weight_static" value="2.0"/>
+        <param name="weight_static" value="4.0"/>
         <param name="weight_reci" value="5.0"/>
         <param name="max_acc" value="0.4"/>
     </node>
@@ -116,7 +116,7 @@
         <!-- Bspline parameters -->
         <param name="traj_duration_secs" value="8.0"/>
         <param name="order" value="3"/>
-        <param name="des_knot_div" value="3"/>
+        <param name="des_knot_div" value="5"/>
         <param name="max_velocity" value="2.0"/>
         <!-- RRT parameters -->
         <param name="runtime_error" value="0.12"/>
@@ -124,15 +124,15 @@
         <param name="search_radius" value="7.0"/>
         <param name="threshold" value="0.3"/>
         <param name="search_interval" value="7.0"/>
-        <param name="xybuffer" value="1.0"/>
-        <param name="zbuffer" value="1.0"/>
-        <param name="passage_size" value="10.0"/>
+        <param name="xybuffer" value="2.5"/>
+        <param name="zbuffer" value="1.5"/>
+        <param name="passage_size" value="9.0"/>
         <rosparam param="height">[1.0, 3.0]</rosparam>
         <!-- Optimization parameters -->
         <param name="weight_smooth" value="1.0"/>
-        <param name="weight_feas" value="1.0"/>
+        <param name="weight_feas" value="2.0"/>
         <param name="weight_term" value="0.1"/>
-        <param name="weight_static" value="2.0"/>
+        <param name="weight_static" value="4.0"/>
         <param name="weight_reci" value="5.0"/>
         <param name="max_acc" value="0.4"/>
     </node>
@@ -162,7 +162,7 @@
         <!-- Bspline parameters -->
         <param name="traj_duration_secs" value="8.0"/>
         <param name="order" value="3"/>
-        <param name="des_knot_div" value="3"/>
+        <param name="des_knot_div" value="5"/>
         <param name="max_velocity" value="2.0"/>
         <!-- RRT parameters -->
         <param name="runtime_error" value="0.12"/>
@@ -170,15 +170,15 @@
         <param name="search_radius" value="7.0"/>
         <param name="threshold" value="0.3"/>
         <param name="search_interval" value="7.0"/>
-        <param name="xybuffer" value="1.0"/>
-        <param name="zbuffer" value="1.0"/>
-        <param name="passage_size" value="10.0"/>
+        <param name="xybuffer" value="2.5"/>
+        <param name="zbuffer" value="1.5"/>
+        <param name="passage_size" value="9.0"/>
         <rosparam param="height">[1.0, 3.0]</rosparam>
         <!-- Optimization parameters -->
         <param name="weight_smooth" value="1.0"/>
-        <param name="weight_feas" value="1.0"/>
+        <param name="weight_feas" value="2.0"/>
         <param name="weight_term" value="0.1"/>
-        <param name="weight_static" value="2.0"/>
+        <param name="weight_static" value="4.0"/>
         <param name="weight_reci" value="5.0"/>
         <param name="max_acc" value="0.4"/>
     </node>

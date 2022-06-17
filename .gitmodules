@@ -4,3 +4,6 @@
 [submodule "simple_quad_simulator"]
 	path = simple_quad_simulator
 	url = git@github.com:matthewoots/simple_quad_simulator.git
+[submodule "foalme_user_server/CSVWriter"]
+	path = foalme_user_server/CSVWriter
+	url = git@github.com:al-eax/CSVWriter.git
