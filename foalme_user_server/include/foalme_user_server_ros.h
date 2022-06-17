@@ -48,10 +48,13 @@
 #include <sensor_msgs/point_cloud_conversion.h>
 #include <sensor_msgs/JointState.h>
 
+#include <trajectory_msgs/JointTrajectory.h>
+
 #include <pcl_ros/point_cloud.h>
 #include <pcl/point_types.h>
 #include <pcl/conversions.h>
 #include <pcl/io/pcd_io.h>
+#include <pcl/kdtree/kdtree_flann.h>
 
 #include <tf/tf.h>
 
@@ -83,6 +86,7 @@ class user_server_ros
             double distance;
             ros::Time t;
             int mission;
+            double compute_time;
         };
 
         struct agent_waypoint
@@ -95,7 +99,7 @@ class user_server_ros
 
         ros::Publisher _goal_pub, _pcl_pub;
         
-        ros::Subscriber _pose_sub;
+        ros::Subscriber _pose_sub, _trajectory_sub;
 
         ros::Timer _target_tracker_timer, _cloud_timer, _logging_timer;
 
@@ -129,6 +133,8 @@ class user_server_ros
         void logging_timer(const ros::TimerEvent &);
         
         void pose_callback(const sensor_msgs::JointState::ConstPtr &msg);
+
+        void trajectory_callback(const trajectory_msgs::JointTrajectory::ConstPtr &msg);
 
     public:
 
@@ -189,6 +195,10 @@ class user_server_ros
             _pose_sub = _nh.subscribe<sensor_msgs::JointState>(
                 "/agent/pose", 200, &user_server_ros::pose_callback, this);
 
+            /** @brief Subscriber that receives trajectory data of uavs published by trajectory_server_ros */
+            _trajectory_sub = _nh.subscribe<trajectory_msgs::JointTrajectory>(
+                "/trajectory/points", 200, &user_server_ros::trajectory_callback, this);
+
             /** @brief Publisher that publishes pointcloud */
             _pcl_pub = _nh.advertise<sensor_msgs::PointCloud2>("/cloud", 20);
 
@@ -211,6 +221,7 @@ class user_server_ros
             if(!myFile.fail()){
                 _valid_cloud = true;
                 pcl::io::loadPCDFile<pcl::PointXYZ>(_file_location, *cloud);// Load the pcd file
+                global_cloud = cloud;
 
                 pcl::toROSMsg(*cloud, cloud_msg);
                 std::cout << "[user_server] " << KGRN << 
@@ -242,6 +253,7 @@ class user_server_ros
                 new_agent.distance = 0.0;
                 new_agent.id = i;
                 new_agent.mission = -1;
+                new_agent.compute_time = 0.0;
                 new_agent.t = ros::Time::now();
                 new_agent.pos = Eigen::Vector3d(sqrt(-1), sqrt(-1), sqrt(-1));
                 agents.push_back(new_agent);
@@ -263,6 +275,39 @@ class user_server_ros
             pcl::fromPCLPointCloud2(pcl_pc2, *tmp_cloud);
             
             return tmp_cloud;
+        }
+
+        bool kdtree_collide_pcl_bool(
+            Eigen::Vector3d point, pcl::PointCloud<pcl::PointXYZ>::Ptr obs, double c)
+        {
+            pcl::KdTreeFLANN<pcl::PointXYZ> kdtree;
+
+            kdtree.setInputCloud(obs);
+
+            pcl::PointXYZ searchPoint;
+            searchPoint.x = point.x();
+            searchPoint.y = point.y();
+            searchPoint.z = point.z();
+
+            std::vector<int> pointIdxRadiusSearch;
+            std::vector<float> pointRadiusSquaredDistance;
+
+            // float radius = 256.0f * rand () / (RAND_MAX + 1.0f);
+
+            float radius = (float)c;
+
+            if ( kdtree.radiusSearch (searchPoint, radius, pointIdxRadiusSearch, pointRadiusSquaredDistance) > 0 )
+            {
+                if (pointIdxRadiusSearch.empty())
+                    return false;
+
+                for (std::size_t i = 0; i < pointIdxRadiusSearch.size (); ++i)
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
         
 };

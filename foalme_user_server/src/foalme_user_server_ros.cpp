@@ -179,7 +179,8 @@ void user_server_ros::logging_timer(const ros::TimerEvent &)
     for (int i = 0; i < _agent_number; i++)
     {
         double safety_radius = 0.3;
-        std::string str = "";
+        // std::string str = "";
+        int col = 0;
         for (int j = 0; j < _agent_number; j++)
         {
             if (i == j)
@@ -188,7 +189,16 @@ void user_server_ros::logging_timer(const ros::TimerEvent &)
             // safety_radius * 2 because if both radius were to intersect with each other
             if (distance < safety_radius * 2)
             {
-                str += to_string(j) + " ";
+                // str += to_string(j) + " ";
+                col++;
+            }
+
+            if (global_cloud->points.empty())
+                continue;
+
+            if (kdtree_collide_pcl_bool(agents[i].pos, global_cloud, safety_radius))
+            {
+                col++;
             }
         }
         std::lock_guard<std::mutex> agents_lock(agents_mutex);
@@ -196,10 +206,11 @@ void user_server_ros::logging_timer(const ros::TimerEvent &)
         CSVWriter csv;
         csv.newRow() << 
             (agents[i].t - module_start_time).toSec() << 
-            "computation_time" << 
+            agents[i].compute_time << 
             agents[i].vel.norm() <<
             agents[i].distance << 
-            str;
+            col;
+            // str;
         csv.writeToFile(_log_file_name[i], true);
     }
 }
@@ -245,6 +256,31 @@ void user_server_ros::pose_callback(const sensor_msgs::JointState::ConstPtr &msg
 
             return;
         }
+
+    }
+
+}
+
+void user_server_ros::trajectory_callback(const trajectory_msgs::JointTrajectory::ConstPtr &msg)
+{
+    int vector_index = -1;
+
+    if (msg->points.empty())
+        return;
+
+    double computation = msg->points[0].time_from_start.toSec();
+
+    std::lock_guard<std::mutex> agents_lock(agents_mutex);
+
+    if (!agents.empty())
+    {
+        std::string traj_agent_id = msg->joint_names[0];
+        std::string uav_id_char = traj_agent_id.erase(0,5); // removes first 5 character
+		int idx = stoi(uav_id_char);
+
+        agents[idx].compute_time = computation;
+
+        return;
 
     }
 
