@@ -178,7 +178,7 @@ void user_server_ros::logging_timer(const ros::TimerEvent &)
 
     for (int i = 0; i < _agent_number; i++)
     {
-        double safety_radius = 0.3;
+        double safety_radius = 0.2;
         // std::string str = "";
         int col = 0;
         for (int j = 0; j < _agent_number; j++)

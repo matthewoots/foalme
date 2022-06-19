@@ -10,7 +10,7 @@
         <param name="agent_id" value="$(arg id)"/>
         <param name="sensing_range" value="4"/>
         <param name="command_rate" value="$(arg command_hz)"/>
-        <param name="start_x" value="-9.0"/>
+        <param name="start_x" value="-6.75"/>
         <param name="start_y" value="10.0"/>
         <param name="start_z" value="1.5"/>
         <param name="yaw_offset" value="0.0"/>
@@ -30,19 +30,18 @@
         <param name="runtime_error" value="0.12"/>
         <param name="sub_runtime_error" value="0.025"/>
         <param name="search_radius" value="7.0"/>
-        <param name="threshold" value="0.3"/>
+        <param name="threshold" value="0.35"/>
         <param name="search_interval" value="7.0"/>
-        <param name="xybuffer" value="1.0"/>
-        <param name="zbuffer" value="1.0"/>
-        <param name="passage_size" value="10.0"/>
+        <param name="xybuffer" value="2.5"/>
+        <param name="zbuffer" value="1.5"/>
+        <param name="passage_size" value="9.0"/>
         <rosparam param="height">[1.0, 3.0]</rosparam>
         <!-- Optimization parameters -->
-        <param name="weight_smooth" value="1.0"/>
-        <param name="weight_feas" value="1.0"/>
-        <param name="weight_term" value="0.1"/>
-        <param name="weight_static" value="2.0"/>
-        <param name="weight_reci" value="5.0"/>
-        <param name="max_acc" value="0.4"/>
+        <param name="weight_smooth" value="1.5"/>
+        <param name="weight_feas" value="2.5"/>
+        <param name="weight_static" value="1.2"/>
+        <param name="weight_reci" value="5.4"/>
+        <param name="max_acc" value="0.3"/>
     </node>
 </group>
     
@@ -56,7 +55,7 @@
         <param name="agent_id" value="$(arg id)"/>
         <param name="sensing_range" value="4"/>
         <param name="command_rate" value="$(arg command_hz)"/>
-        <param name="start_x" value="-7.0"/>
+        <param name="start_x" value="-5.25"/>
         <param name="start_y" value="10.0"/>
         <param name="start_z" value="1.5"/>
         <param name="yaw_offset" value="0.0"/>
@@ -76,19 +75,18 @@
         <param name="runtime_error" value="0.12"/>
         <param name="sub_runtime_error" value="0.025"/>
         <param name="search_radius" value="7.0"/>
-        <param name="threshold" value="0.3"/>
+        <param name="threshold" value="0.35"/>
         <param name="search_interval" value="7.0"/>
-        <param name="xybuffer" value="1.0"/>
-        <param name="zbuffer" value="1.0"/>
-        <param name="passage_size" value="10.0"/>
+        <param name="xybuffer" value="2.5"/>
+        <param name="zbuffer" value="1.5"/>
+        <param name="passage_size" value="9.0"/>
         <rosparam param="height">[1.0, 3.0]</rosparam>
         <!-- Optimization parameters -->
-        <param name="weight_smooth" value="1.0"/>
-        <param name="weight_feas" value="1.0"/>
-        <param name="weight_term" value="0.1"/>
-        <param name="weight_static" value="2.0"/>
-        <param name="weight_reci" value="5.0"/>
-        <param name="max_acc" value="0.4"/>
+        <param name="weight_smooth" value="1.5"/>
+        <param name="weight_feas" value="2.5"/>
+        <param name="weight_static" value="1.2"/>
+        <param name="weight_reci" value="5.4"/>
+        <param name="max_acc" value="0.3"/>
     </node>
 </group>
     
@@ -102,7 +100,7 @@
         <param name="agent_id" value="$(arg id)"/>
         <param name="sensing_range" value="4"/>
         <param name="command_rate" value="$(arg command_hz)"/>
-        <param name="start_x" value="-5.0"/>
+        <param name="start_x" value="-3.75"/>
         <param name="start_y" value="10.0"/>
         <param name="start_z" value="1.5"/>
         <param name="yaw_offset" value="0.0"/>
@@ -122,19 +120,18 @@
         <param name="runtime_error" value="0.12"/>
         <param name="sub_runtime_error" value="0.025"/>
         <param name="search_radius" value="7.0"/>
-        <param name="threshold" value="0.3"/>
+        <param name="threshold" value="0.35"/>
         <param name="search_interval" value="7.0"/>
-        <param name="xybuffer" value="1.0"/>
-        <param name="zbuffer" value="1.0"/>
-        <param name="passage_size" value="10.0"/>
+        <param name="xybuffer" value="2.5"/>
+        <param name="zbuffer" value="1.5"/>
+        <param name="passage_size" value="9.0"/>
         <rosparam param="height">[1.0, 3.0]</rosparam>
         <!-- Optimization parameters -->
-        <param name="weight_smooth" value="1.0"/>
-        <param name="weight_feas" value="1.0"/>
-        <param name="weight_term" value="0.1"/>
-        <param name="weight_static" value="2.0"/>
-        <param name="weight_reci" value="5.0"/>
-        <param name="max_acc" value="0.4"/>
+        <param name="weight_smooth" value="1.5"/>
+        <param name="weight_feas" value="2.5"/>
+        <param name="weight_static" value="1.2"/>
+        <param name="weight_reci" value="5.4"/>
+        <param name="max_acc" value="0.3"/>
     </node>
 </group>
     
@@ -148,7 +145,7 @@
         <param name="agent_id" value="$(arg id)"/>
         <param name="sensing_range" value="4"/>
         <param name="command_rate" value="$(arg command_hz)"/>
-        <param name="start_x" value="-3.0"/>
+        <param name="start_x" value="-2.25"/>
         <param name="start_y" value="10.0"/>
         <param name="start_z" value="1.5"/>
         <param name="yaw_offset" value="0.0"/>
@@ -168,19 +165,18 @@
         <param name="runtime_error" value="0.12"/>
         <param name="sub_runtime_error" value="0.025"/>
         <param name="search_radius" value="7.0"/>
-        <param name="threshold" value="0.3"/>
+        <param name="threshold" value="0.35"/>
         <param name="search_interval" value="7.0"/>
-        <param name="xybuffer" value="1.0"/>
-        <param name="zbuffer" value="1.0"/>
-        <param name="passage_size" value="10.0"/>
+        <param name="xybuffer" value="2.5"/>
+        <param name="zbuffer" value="1.5"/>
+        <param name="passage_size" value="9.0"/>
         <rosparam param="height">[1.0, 3.0]</rosparam>
         <!-- Optimization parameters -->
-        <param name="weight_smooth" value="1.0"/>
-        <param name="weight_feas" value="1.0"/>
-        <param name="weight_term" value="0.1"/>
-        <param name="weight_static" value="2.0"/>
-        <param name="weight_reci" value="5.0"/>
-        <param name="max_acc" value="0.4"/>
+        <param name="weight_smooth" value="1.5"/>
+        <param name="weight_feas" value="2.5"/>
+        <param name="weight_static" value="1.2"/>
+        <param name="weight_reci" value="5.4"/>
+        <param name="max_acc" value="0.3"/>
     </node>
 </group>
     
@@ -194,7 +190,7 @@
         <param name="agent_id" value="$(arg id)"/>
         <param name="sensing_range" value="4"/>
         <param name="command_rate" value="$(arg command_hz)"/>
-        <param name="start_x" value="-1.0"/>
+        <param name="start_x" value="-0.75"/>
         <param name="start_y" value="10.0"/>
         <param name="start_z" value="1.5"/>
         <param name="yaw_offset" value="0.0"/>
@@ -214,19 +210,18 @@
         <param name="runtime_error" value="0.12"/>
         <param name="sub_runtime_error" value="0.025"/>
         <param name="search_radius" value="7.0"/>
-        <param name="threshold" value="0.3"/>
+        <param name="threshold" value="0.35"/>
         <param name="search_interval" value="7.0"/>
-        <param name="xybuffer" value="1.0"/>
-        <param name="zbuffer" value="1.0"/>
-        <param name="passage_size" value="10.0"/>
+        <param name="xybuffer" value="2.5"/>
+        <param name="zbuffer" value="1.5"/>
+        <param name="passage_size" value="9.0"/>
         <rosparam param="height">[1.0, 3.0]</rosparam>
         <!-- Optimization parameters -->
-        <param name="weight_smooth" value="1.0"/>
-        <param name="weight_feas" value="1.0"/>
-        <param name="weight_term" value="0.1"/>
-        <param name="weight_static" value="2.0"/>
-        <param name="weight_reci" value="5.0"/>
-        <param name="max_acc" value="0.4"/>
+        <param name="weight_smooth" value="1.5"/>
+        <param name="weight_feas" value="2.5"/>
+        <param name="weight_static" value="1.2"/>
+        <param name="weight_reci" value="5.4"/>
+        <param name="max_acc" value="0.3"/>
     </node>
 </group>
     
@@ -240,7 +235,7 @@
         <param name="agent_id" value="$(arg id)"/>
         <param name="sensing_range" value="4"/>
         <param name="command_rate" value="$(arg command_hz)"/>
-        <param name="start_x" value="1.0"/>
+        <param name="start_x" value="0.75"/>
         <param name="start_y" value="10.0"/>
         <param name="start_z" value="1.5"/>
         <param name="yaw_offset" value="0.0"/>
@@ -260,19 +255,18 @@
         <param name="runtime_error" value="0.12"/>
         <param name="sub_runtime_error" value="0.025"/>
         <param name="search_radius" value="7.0"/>
-        <param name="threshold" value="0.3"/>
+        <param name="threshold" value="0.35"/>
         <param name="search_interval" value="7.0"/>
-        <param name="xybuffer" value="1.0"/>
-        <param name="zbuffer" value="1.0"/>
-        <param name="passage_size" value="10.0"/>
+        <param name="xybuffer" value="2.5"/>
+        <param name="zbuffer" value="1.5"/>
+        <param name="passage_size" value="9.0"/>
         <rosparam param="height">[1.0, 3.0]</rosparam>
         <!-- Optimization parameters -->
-        <param name="weight_smooth" value="1.0"/>
-        <param name="weight_feas" value="1.0"/>
-        <param name="weight_term" value="0.1"/>
-        <param name="weight_static" value="2.0"/>
-        <param name="weight_reci" value="5.0"/>
-        <param name="max_acc" value="0.4"/>
+        <param name="weight_smooth" value="1.5"/>
+        <param name="weight_feas" value="2.5"/>
+        <param name="weight_static" value="1.2"/>
+        <param name="weight_reci" value="5.4"/>
+        <param name="max_acc" value="0.3"/>
     </node>
 </group>
     
@@ -286,7 +280,7 @@
         <param name="agent_id" value="$(arg id)"/>
         <param name="sensing_range" value="4"/>
         <param name="command_rate" value="$(arg command_hz)"/>
-        <param name="start_x" value="3.0"/>
+        <param name="start_x" value="2.25"/>
         <param name="start_y" value="10.0"/>
         <param name="start_z" value="1.5"/>
         <param name="yaw_offset" value="0.0"/>
@@ -306,19 +300,18 @@
         <param name="runtime_error" value="0.12"/>
         <param name="sub_runtime_error" value="0.025"/>
         <param name="search_radius" value="7.0"/>
-        <param name="threshold" value="0.3"/>
+        <param name="threshold" value="0.35"/>
         <param name="search_interval" value="7.0"/>
-        <param name="xybuffer" value="1.0"/>
-        <param name="zbuffer" value="1.0"/>
-        <param name="passage_size" value="10.0"/>
+        <param name="xybuffer" value="2.5"/>
+        <param name="zbuffer" value="1.5"/>
+        <param name="passage_size" value="9.0"/>
         <rosparam param="height">[1.0, 3.0]</rosparam>
         <!-- Optimization parameters -->
-        <param name="weight_smooth" value="1.0"/>
-        <param name="weight_feas" value="1.0"/>
-        <param name="weight_term" value="0.1"/>
-        <param name="weight_static" value="2.0"/>
-        <param name="weight_reci" value="5.0"/>
-        <param name="max_acc" value="0.4"/>
+        <param name="weight_smooth" value="1.5"/>
+        <param name="weight_feas" value="2.5"/>
+        <param name="weight_static" value="1.2"/>
+        <param name="weight_reci" value="5.4"/>
+        <param name="max_acc" value="0.3"/>
     </node>
 </group>
     
@@ -332,7 +325,7 @@
         <param name="agent_id" value="$(arg id)"/>
         <param name="sensing_range" value="4"/>
         <param name="command_rate" value="$(arg command_hz)"/>
-        <param name="start_x" value="5.0"/>
+        <param name="start_x" value="3.75"/>
         <param name="start_y" value="10.0"/>
         <param name="start_z" value="1.5"/>
         <param name="yaw_offset" value="0.0"/>
@@ -352,19 +345,18 @@
         <param name="runtime_error" value="0.12"/>
         <param name="sub_runtime_error" value="0.025"/>
         <param name="search_radius" value="7.0"/>
-        <param name="threshold" value="0.3"/>
+        <param name="threshold" value="0.35"/>
         <param name="search_interval" value="7.0"/>
-        <param name="xybuffer" value="1.0"/>
-        <param name="zbuffer" value="1.0"/>
-        <param name="passage_size" value="10.0"/>
+        <param name="xybuffer" value="2.5"/>
+        <param name="zbuffer" value="1.5"/>
+        <param name="passage_size" value="9.0"/>
         <rosparam param="height">[1.0, 3.0]</rosparam>
         <!-- Optimization parameters -->
-        <param name="weight_smooth" value="1.0"/>
-        <param name="weight_feas" value="1.0"/>
-        <param name="weight_term" value="0.1"/>
-        <param name="weight_static" value="2.0"/>
-        <param name="weight_reci" value="5.0"/>
-        <param name="max_acc" value="0.4"/>
+        <param name="weight_smooth" value="1.5"/>
+        <param name="weight_feas" value="2.5"/>
+        <param name="weight_static" value="1.2"/>
+        <param name="weight_reci" value="5.4"/>
+        <param name="max_acc" value="0.3"/>
     </node>
 </group>
     
@@ -378,7 +370,7 @@
         <param name="agent_id" value="$(arg id)"/>
         <param name="sensing_range" value="4"/>
         <param name="command_rate" value="$(arg command_hz)"/>
-        <param name="start_x" value="7.0"/>
+        <param name="start_x" value="5.25"/>
         <param name="start_y" value="10.0"/>
         <param name="start_z" value="1.5"/>
         <param name="yaw_offset" value="0.0"/>
@@ -398,19 +390,18 @@
         <param name="runtime_error" value="0.12"/>
         <param name="sub_runtime_error" value="0.025"/>
         <param name="search_radius" value="7.0"/>
-        <param name="threshold" value="0.3"/>
+        <param name="threshold" value="0.35"/>
         <param name="search_interval" value="7.0"/>
-        <param name="xybuffer" value="1.0"/>
-        <param name="zbuffer" value="1.0"/>
-        <param name="passage_size" value="10.0"/>
+        <param name="xybuffer" value="2.5"/>
+        <param name="zbuffer" value="1.5"/>
+        <param name="passage_size" value="9.0"/>
         <rosparam param="height">[1.0, 3.0]</rosparam>
         <!-- Optimization parameters -->
-        <param name="weight_smooth" value="1.0"/>
-        <param name="weight_feas" value="1.0"/>
-        <param name="weight_term" value="0.1"/>
-        <param name="weight_static" value="2.0"/>
-        <param name="weight_reci" value="5.0"/>
-        <param name="max_acc" value="0.4"/>
+        <param name="weight_smooth" value="1.5"/>
+        <param name="weight_feas" value="2.5"/>
+        <param name="weight_static" value="1.2"/>
+        <param name="weight_reci" value="5.4"/>
+        <param name="max_acc" value="0.3"/>
     </node>
 </group>
     
@@ -424,7 +415,7 @@
         <param name="agent_id" value="$(arg id)"/>
         <param name="sensing_range" value="4"/>
         <param name="command_rate" value="$(arg command_hz)"/>
-        <param name="start_x" value="9.0"/>
+        <param name="start_x" value="6.75"/>
         <param name="start_y" value="10.0"/>
         <param name="start_z" value="1.5"/>
         <param name="yaw_offset" value="0.0"/>
@@ -444,19 +435,18 @@
         <param name="runtime_error" value="0.12"/>
         <param name="sub_runtime_error" value="0.025"/>
         <param name="search_radius" value="7.0"/>
-        <param name="threshold" value="0.3"/>
+        <param name="threshold" value="0.35"/>
         <param name="search_interval" value="7.0"/>
-        <param name="xybuffer" value="1.0"/>
-        <param name="zbuffer" value="1.0"/>
-        <param name="passage_size" value="10.0"/>
+        <param name="xybuffer" value="2.5"/>
+        <param name="zbuffer" value="1.5"/>
+        <param name="passage_size" value="9.0"/>
         <rosparam param="height">[1.0, 3.0]</rosparam>
         <!-- Optimization parameters -->
-        <param name="weight_smooth" value="1.0"/>
-        <param name="weight_feas" value="1.0"/>
-        <param name="weight_term" value="0.1"/>
-        <param name="weight_static" value="2.0"/>
-        <param name="weight_reci" value="5.0"/>
-        <param name="max_acc" value="0.4"/>
+        <param name="weight_smooth" value="1.5"/>
+        <param name="weight_feas" value="2.5"/>
+        <param name="weight_static" value="1.2"/>
+        <param name="weight_reci" value="5.4"/>
+        <param name="max_acc" value="0.3"/>
     </node>
 </group>
     
@@ -470,7 +460,7 @@
         <param name="agent_id" value="$(arg id)"/>
         <param name="sensing_range" value="4"/>
         <param name="command_rate" value="$(arg command_hz)"/>
-        <param name="start_x" value="-9.0"/>
+        <param name="start_x" value="-6.75"/>
         <param name="start_y" value="-10.0"/>
         <param name="start_z" value="1.5"/>
         <param name="yaw_offset" value="0.0"/>
@@ -490,19 +480,18 @@
         <param name="runtime_error" value="0.12"/>
         <param name="sub_runtime_error" value="0.025"/>
         <param name="search_radius" value="7.0"/>
-        <param name="threshold" value="0.3"/>
+        <param name="threshold" value="0.35"/>
         <param name="search_interval" value="7.0"/>
-        <param name="xybuffer" value="1.0"/>
-        <param name="zbuffer" value="1.0"/>
-        <param name="passage_size" value="10.0"/>
+        <param name="xybuffer" value="2.5"/>
+        <param name="zbuffer" value="1.5"/>
+        <param name="passage_size" value="9.0"/>
         <rosparam param="height">[1.0, 3.0]</rosparam>
         <!-- Optimization parameters -->
-        <param name="weight_smooth" value="1.0"/>
-        <param name="weight_feas" value="1.0"/>
-        <param name="weight_term" value="0.1"/>
-        <param name="weight_static" value="2.0"/>
-        <param name="weight_reci" value="5.0"/>
-        <param name="max_acc" value="0.4"/>
+        <param name="weight_smooth" value="1.5"/>
+        <param name="weight_feas" value="2.5"/>
+        <param name="weight_static" value="1.2"/>
+        <param name="weight_reci" value="5.4"/>
+        <param name="max_acc" value="0.3"/>
     </node>
 </group>
     
@@ -516,7 +505,7 @@
         <param name="agent_id" value="$(arg id)"/>
         <param name="sensing_range" value="4"/>
         <param name="command_rate" value="$(arg command_hz)"/>
-        <param name="start_x" value="-7.0"/>
+        <param name="start_x" value="-5.25"/>
         <param name="start_y" value="-10.0"/>
         <param name="start_z" value="1.5"/>
         <param name="yaw_offset" value="0.0"/>
@@ -536,19 +525,18 @@
         <param name="runtime_error" value="0.12"/>
         <param name="sub_runtime_error" value="0.025"/>
         <param name="search_radius" value="7.0"/>
-        <param name="threshold" value="0.3"/>
+        <param name="threshold" value="0.35"/>
         <param name="search_interval" value="7.0"/>
-        <param name="xybuffer" value="1.0"/>
-        <param name="zbuffer" value="1.0"/>
-        <param name="passage_size" value="10.0"/>
+        <param name="xybuffer" value="2.5"/>
+        <param name="zbuffer" value="1.5"/>
+        <param name="passage_size" value="9.0"/>
         <rosparam param="height">[1.0, 3.0]</rosparam>
         <!-- Optimization parameters -->
-        <param name="weight_smooth" value="1.0"/>
-        <param name="weight_feas" value="1.0"/>
-        <param name="weight_term" value="0.1"/>
-        <param name="weight_static" value="2.0"/>
-        <param name="weight_reci" value="5.0"/>
-        <param name="max_acc" value="0.4"/>
+        <param name="weight_smooth" value="1.5"/>
+        <param name="weight_feas" value="2.5"/>
+        <param name="weight_static" value="1.2"/>
+        <param name="weight_reci" value="5.4"/>
+        <param name="max_acc" value="0.3"/>
     </node>
 </group>
     
@@ -562,7 +550,7 @@
         <param name="agent_id" value="$(arg id)"/>
         <param name="sensing_range" value="4"/>
         <param name="command_rate" value="$(arg command_hz)"/>
-        <param name="start_x" value="-5.0"/>
+        <param name="start_x" value="-3.75"/>
         <param name="start_y" value="-10.0"/>
         <param name="start_z" value="1.5"/>
         <param name="yaw_offset" value="0.0"/>
@@ -582,19 +570,18 @@
         <param name="runtime_error" value="0.12"/>
         <param name="sub_runtime_error" value="0.025"/>
         <param name="search_radius" value="7.0"/>
-        <param name="threshold" value="0.3"/>
+        <param name="threshold" value="0.35"/>
         <param name="search_interval" value="7.0"/>
-        <param name="xybuffer" value="1.0"/>
-        <param name="zbuffer" value="1.0"/>
-        <param name="passage_size" value="10.0"/>
+        <param name="xybuffer" value="2.5"/>
+        <param name="zbuffer" value="1.5"/>
+        <param name="passage_size" value="9.0"/>
         <rosparam param="height">[1.0, 3.0]</rosparam>
         <!-- Optimization parameters -->
-        <param name="weight_smooth" value="1.0"/>
-        <param name="weight_feas" value="1.0"/>
-        <param name="weight_term" value="0.1"/>
-        <param name="weight_static" value="2.0"/>
-        <param name="weight_reci" value="5.0"/>
-        <param name="max_acc" value="0.4"/>
+        <param name="weight_smooth" value="1.5"/>
+        <param name="weight_feas" value="2.5"/>
+        <param name="weight_static" value="1.2"/>
+        <param name="weight_reci" value="5.4"/>
+        <param name="max_acc" value="0.3"/>
     </node>
 </group>
     
@@ -608,7 +595,7 @@
         <param name="agent_id" value="$(arg id)"/>
         <param name="sensing_range" value="4"/>
         <param name="command_rate" value="$(arg command_hz)"/>
-        <param name="start_x" value="-3.0"/>
+        <param name="start_x" value="-2.25"/>
         <param name="start_y" value="-10.0"/>
         <param name="start_z" value="1.5"/>
         <param name="yaw_offset" value="0.0"/>
@@ -628,19 +615,18 @@
         <param name="runtime_error" value="0.12"/>
         <param name="sub_runtime_error" value="0.025"/>
         <param name="search_radius" value="7.0"/>
-        <param name="threshold" value="0.3"/>
+        <param name="threshold" value="0.35"/>
         <param name="search_interval" value="7.0"/>
-        <param name="xybuffer" value="1.0"/>
-        <param name="zbuffer" value="1.0"/>
-        <param name="passage_size" value="10.0"/>
+        <param name="xybuffer" value="2.5"/>
+        <param name="zbuffer" value="1.5"/>
+        <param name="passage_size" value="9.0"/>
         <rosparam param="height">[1.0, 3.0]</rosparam>
         <!-- Optimization parameters -->
-        <param name="weight_smooth" value="1.0"/>
-        <param name="weight_feas" value="1.0"/>
-        <param name="weight_term" value="0.1"/>
-        <param name="weight_static" value="2.0"/>
-        <param name="weight_reci" value="5.0"/>
-        <param name="max_acc" value="0.4"/>
+        <param name="weight_smooth" value="1.5"/>
+        <param name="weight_feas" value="2.5"/>
+        <param name="weight_static" value="1.2"/>
+        <param name="weight_reci" value="5.4"/>
+        <param name="max_acc" value="0.3"/>
     </node>
 </group>
     
@@ -654,7 +640,7 @@
         <param name="agent_id" value="$(arg id)"/>
         <param name="sensing_range" value="4"/>
         <param name="command_rate" value="$(arg command_hz)"/>
-        <param name="start_x" value="-1.0"/>
+        <param name="start_x" value="-0.75"/>
         <param name="start_y" value="-10.0"/>
         <param name="start_z" value="1.5"/>
         <param name="yaw_offset" value="0.0"/>
@@ -674,19 +660,18 @@
         <param name="runtime_error" value="0.12"/>
         <param name="sub_runtime_error" value="0.025"/>
         <param name="search_radius" value="7.0"/>
-        <param name="threshold" value="0.3"/>
+        <param name="threshold" value="0.35"/>
         <param name="search_interval" value="7.0"/>
-        <param name="xybuffer" value="1.0"/>
-        <param name="zbuffer" value="1.0"/>
-        <param name="passage_size" value="10.0"/>
+        <param name="xybuffer" value="2.5"/>
+        <param name="zbuffer" value="1.5"/>
+        <param name="passage_size" value="9.0"/>
         <rosparam param="height">[1.0, 3.0]</rosparam>
         <!-- Optimization parameters -->
-        <param name="weight_smooth" value="1.0"/>
-        <param name="weight_feas" value="1.0"/>
-        <param name="weight_term" value="0.1"/>
-        <param name="weight_static" value="2.0"/>
-        <param name="weight_reci" value="5.0"/>
-        <param name="max_acc" value="0.4"/>
+        <param name="weight_smooth" value="1.5"/>
+        <param name="weight_feas" value="2.5"/>
+        <param name="weight_static" value="1.2"/>
+        <param name="weight_reci" value="5.4"/>
+        <param name="max_acc" value="0.3"/>
     </node>
 </group>
     
@@ -700,7 +685,7 @@
         <param name="agent_id" value="$(arg id)"/>
         <param name="sensing_range" value="4"/>
         <param name="command_rate" value="$(arg command_hz)"/>
-        <param name="start_x" value="1.0"/>
+        <param name="start_x" value="0.75"/>
         <param name="start_y" value="-10.0"/>
         <param name="start_z" value="1.5"/>
         <param name="yaw_offset" value="0.0"/>
@@ -720,19 +705,18 @@
         <param name="runtime_error" value="0.12"/>
         <param name="sub_runtime_error" value="0.025"/>
         <param name="search_radius" value="7.0"/>
-        <param name="threshold" value="0.3"/>
+        <param name="threshold" value="0.35"/>
         <param name="search_interval" value="7.0"/>
-        <param name="xybuffer" value="1.0"/>
-        <param name="zbuffer" value="1.0"/>
-        <param name="passage_size" value="10.0"/>
+        <param name="xybuffer" value="2.5"/>
+        <param name="zbuffer" value="1.5"/>
+        <param name="passage_size" value="9.0"/>
         <rosparam param="height">[1.0, 3.0]</rosparam>
         <!-- Optimization parameters -->
-        <param name="weight_smooth" value="1.0"/>
-        <param name="weight_feas" value="1.0"/>
-        <param name="weight_term" value="0.1"/>
-        <param name="weight_static" value="2.0"/>
-        <param name="weight_reci" value="5.0"/>
-        <param name="max_acc" value="0.4"/>
+        <param name="weight_smooth" value="1.5"/>
+        <param name="weight_feas" value="2.5"/>
+        <param name="weight_static" value="1.2"/>
+        <param name="weight_reci" value="5.4"/>
+        <param name="max_acc" value="0.3"/>
     </node>
 </group>
     
@@ -746,7 +730,7 @@
         <param name="agent_id" value="$(arg id)"/>
         <param name="sensing_range" value="4"/>
         <param name="command_rate" value="$(arg command_hz)"/>
-        <param name="start_x" value="3.0"/>
+        <param name="start_x" value="2.25"/>
         <param name="start_y" value="-10.0"/>
         <param name="start_z" value="1.5"/>
         <param name="yaw_offset" value="0.0"/>
@@ -766,19 +750,18 @@
         <param name="runtime_error" value="0.12"/>
         <param name="sub_runtime_error" value="0.025"/>
         <param name="search_radius" value="7.0"/>
-        <param name="threshold" value="0.3"/>
+        <param name="threshold" value="0.35"/>
         <param name="search_interval" value="7.0"/>
-        <param name="xybuffer" value="1.0"/>
-        <param name="zbuffer" value="1.0"/>
-        <param name="passage_size" value="10.0"/>
+        <param name="xybuffer" value="2.5"/>
+        <param name="zbuffer" value="1.5"/>
+        <param name="passage_size" value="9.0"/>
         <rosparam param="height">[1.0, 3.0]</rosparam>
         <!-- Optimization parameters -->
-        <param name="weight_smooth" value="1.0"/>
-        <param name="weight_feas" value="1.0"/>
-        <param name="weight_term" value="0.1"/>
-        <param name="weight_static" value="2.0"/>
-        <param name="weight_reci" value="5.0"/>
-        <param name="max_acc" value="0.4"/>
+        <param name="weight_smooth" value="1.5"/>
+        <param name="weight_feas" value="2.5"/>
+        <param name="weight_static" value="1.2"/>
+        <param name="weight_reci" value="5.4"/>
+        <param name="max_acc" value="0.3"/>
     </node>
 </group>
     
@@ -792,7 +775,7 @@
         <param name="agent_id" value="$(arg id)"/>
         <param name="sensing_range" value="4"/>
         <param name="command_rate" value="$(arg command_hz)"/>
-        <param name="start_x" value="5.0"/>
+        <param name="start_x" value="3.75"/>
         <param name="start_y" value="-10.0"/>
         <param name="start_z" value="1.5"/>
         <param name="yaw_offset" value="0.0"/>
@@ -812,19 +795,18 @@
         <param name="runtime_error" value="0.12"/>
         <param name="sub_runtime_error" value="0.025"/>
         <param name="search_radius" value="7.0"/>
-        <param name="threshold" value="0.3"/>
+        <param name="threshold" value="0.35"/>
         <param name="search_interval" value="7.0"/>
-        <param name="xybuffer" value="1.0"/>
-        <param name="zbuffer" value="1.0"/>
-        <param name="passage_size" value="10.0"/>
+        <param name="xybuffer" value="2.5"/>
+        <param name="zbuffer" value="1.5"/>
+        <param name="passage_size" value="9.0"/>
         <rosparam param="height">[1.0, 3.0]</rosparam>
         <!-- Optimization parameters -->
-        <param name="weight_smooth" value="1.0"/>
-        <param name="weight_feas" value="1.0"/>
-        <param name="weight_term" value="0.1"/>
-        <param name="weight_static" value="2.0"/>
-        <param name="weight_reci" value="5.0"/>
-        <param name="max_acc" value="0.4"/>
+        <param name="weight_smooth" value="1.5"/>
+        <param name="weight_feas" value="2.5"/>
+        <param name="weight_static" value="1.2"/>
+        <param name="weight_reci" value="5.4"/>
+        <param name="max_acc" value="0.3"/>
     </node>
 </group>
     
@@ -838,7 +820,7 @@
         <param name="agent_id" value="$(arg id)"/>
         <param name="sensing_range" value="4"/>
         <param name="command_rate" value="$(arg command_hz)"/>
-        <param name="start_x" value="7.0"/>
+        <param name="start_x" value="5.25"/>
         <param name="start_y" value="-10.0"/>
         <param name="start_z" value="1.5"/>
         <param name="yaw_offset" value="0.0"/>
@@ -858,19 +840,18 @@
         <param name="runtime_error" value="0.12"/>
         <param name="sub_runtime_error" value="0.025"/>
         <param name="search_radius" value="7.0"/>
-        <param name="threshold" value="0.3"/>
+        <param name="threshold" value="0.35"/>
         <param name="search_interval" value="7.0"/>
-        <param name="xybuffer" value="1.0"/>
-        <param name="zbuffer" value="1.0"/>
-        <param name="passage_size" value="10.0"/>
+        <param name="xybuffer" value="2.5"/>
+        <param name="zbuffer" value="1.5"/>
+        <param name="passage_size" value="9.0"/>
         <rosparam param="height">[1.0, 3.0]</rosparam>
         <!-- Optimization parameters -->
-        <param name="weight_smooth" value="1.0"/>
-        <param name="weight_feas" value="1.0"/>
-        <param name="weight_term" value="0.1"/>
-        <param name="weight_static" value="2.0"/>
-        <param name="weight_reci" value="5.0"/>
-        <param name="max_acc" value="0.4"/>
+        <param name="weight_smooth" value="1.5"/>
+        <param name="weight_feas" value="2.5"/>
+        <param name="weight_static" value="1.2"/>
+        <param name="weight_reci" value="5.4"/>
+        <param name="max_acc" value="0.3"/>
     </node>
 </group>
     
@@ -884,7 +865,7 @@
         <param name="agent_id" value="$(arg id)"/>
         <param name="sensing_range" value="4"/>
         <param name="command_rate" value="$(arg command_hz)"/>
-        <param name="start_x" value="9.0"/>
+        <param name="start_x" value="6.75"/>
         <param name="start_y" value="-10.0"/>
         <param name="start_z" value="1.5"/>
         <param name="yaw_offset" value="0.0"/>
@@ -904,19 +885,18 @@
         <param name="runtime_error" value="0.12"/>
         <param name="sub_runtime_error" value="0.025"/>
         <param name="search_radius" value="7.0"/>
-        <param name="threshold" value="0.3"/>
+        <param name="threshold" value="0.35"/>
         <param name="search_interval" value="7.0"/>
-        <param name="xybuffer" value="1.0"/>
-        <param name="zbuffer" value="1.0"/>
-        <param name="passage_size" value="10.0"/>
+        <param name="xybuffer" value="2.5"/>
+        <param name="zbuffer" value="1.5"/>
+        <param name="passage_size" value="9.0"/>
         <rosparam param="height">[1.0, 3.0]</rosparam>
         <!-- Optimization parameters -->
-        <param name="weight_smooth" value="1.0"/>
-        <param name="weight_feas" value="1.0"/>
-        <param name="weight_term" value="0.1"/>
-        <param name="weight_static" value="2.0"/>
-        <param name="weight_reci" value="5.0"/>
-        <param name="max_acc" value="0.4"/>
+        <param name="weight_smooth" value="1.5"/>
+        <param name="weight_feas" value="2.5"/>
+        <param name="weight_static" value="1.2"/>
+        <param name="weight_reci" value="5.4"/>
+        <param name="max_acc" value="0.3"/>
     </node>
 </group>
     

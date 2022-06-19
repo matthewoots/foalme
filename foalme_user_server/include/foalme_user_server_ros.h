@@ -221,7 +221,6 @@ class user_server_ros
             if(!myFile.fail()){
                 _valid_cloud = true;
                 pcl::io::loadPCDFile<pcl::PointXYZ>(_file_location, *cloud);// Load the pcd file
-                global_cloud = cloud;
 
                 pcl::toROSMsg(*cloud, cloud_msg);
                 std::cout << "[user_server] " << KGRN << 
@@ -233,6 +232,8 @@ class user_server_ros
                 std::cout << "[user_server] " << KRED << 
                     "No pcd file found" << KNRM << std::endl;
             }
+
+            global_cloud = cloud;
 
             module_start_time = ros::Time::now();
             _target_tracker_timer.start();
