@@ -50,15 +50,21 @@ catkin build
 ### Run scripts in simple_quad_simulator
 
 1. Run the scripts from `simple_quad_simulator` package, `gen_launch_w_trajectory.py` and `gen_rviz_display.py` this will generate 2 files one in `launch` and the other in `rviz`.
-2. Copy the `generated_XX_XX.launch` file into `foalme_user_server/launch`
-3. copy one of the `X_drone_user_server.launch` files and change `X` to the number of drones you want to launch
-4. Change the launch file details to the specifications you want
+2. copy one of the `X_drone_user_server.launch` files and change `X` to the number of drones you want to launch
+3. Change the launch file details to the specifications you want
 ```xml
 <arg name="formation_type" value="antipodal or left-right-facing or top-down-facing"/>
 ...
 <param name="agents" value="X"/>
 ...
 <param name="file_location" value="X" />
+```
+
+```bash
+cd simple_quad_simulator/scripts
+# follow the script reference, for example
+python gen_launch_w_trajectory.py 10 antipodal 12
+# You will see the file being generated in the simple_quad_simulator/launch folder
 ```
 
 ### Running and launching

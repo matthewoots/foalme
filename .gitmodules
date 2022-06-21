@@ -1,9 +1,12 @@
 [submodule "bspline_trajectory_ros"]
 	path = bspline_trajectory_ros
 	url = git@github.com:matthewoots/bspline_trajectory_ros.git
+	branch = master
 [submodule "simple_quad_simulator"]
 	path = simple_quad_simulator
 	url = git@github.com:matthewoots/simple_quad_simulator.git
+	branch = master
 [submodule "foalme_user_server/CSVWriter"]
 	path = foalme_user_server/CSVWriter
 	url = git@github.com:al-eax/CSVWriter.git
+	branch = master
