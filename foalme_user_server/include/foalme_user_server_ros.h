@@ -86,6 +86,7 @@ class user_server_ros
             double distance;
             ros::Time t;
             int mission;
+            ros::Time trajectory_start_time;
             double compute_time;
         };
 
@@ -111,20 +112,20 @@ class user_server_ros
 
         bool _valid_cloud, _logger_not_started = true;
 
-        int _agent_number;
+        int _agent_number, _logging_counter;
 
         double _tracker_timer_hz, _cloud_hz, _logging_hz;
 
         std::mutex agents_mutex; 
 
-        vector<agent_state> agents;   
+        vector<agent_state> agents, stats;   
 
         sensor_msgs::PointCloud2 cloud_msg;
 
         vector<agent_waypoint> agent_waypoints;
         // vector<Eigen::Vector3d> waypoints;
 
-        ros::Time module_start_time;
+        ros::Time module_start_time, logging_start_time;
 
         void target_update_timer(const ros::TimerEvent &);
 
@@ -236,6 +237,7 @@ class user_server_ros
             global_cloud = cloud;
 
             module_start_time = ros::Time::now();
+            logging_start_time = ros::Time::now();
             _target_tracker_timer.start();
             _cloud_timer.start();
 
@@ -256,13 +258,36 @@ class user_server_ros
                 new_agent.mission = -1;
                 new_agent.compute_time = 0.0;
                 new_agent.t = ros::Time::now();
+                new_agent.trajectory_start_time = ros::Time::now();
                 new_agent.pos = Eigen::Vector3d(sqrt(-1), sqrt(-1), sqrt(-1));
                 agents.push_back(new_agent);
+                new_agent.id = 0;
+                stats.push_back(new_agent);
             }
 
         }
 
-        ~user_server_ros(){}
+        ~user_server_ros()
+        {
+            std::string path(getenv("HOME"));
+            path += "/Documents/";
+
+            std::string _log_file_name = 
+                path + "total_stats_log_file.csv";
+            // Write headers into the file
+            CSVWriter csv;
+            csv.newRow() << "drone" << "average_computation_time" << "total_distance" << "flight_time";
+            for (int i = 0; i < _agent_number; i++)
+            {
+                csv.newRow() << 
+                    i <<
+                    stats[i].compute_time <<
+                    stats[i].distance <<
+                    (stats[i].t - stats[i].trajectory_start_time).toSec();
+            }
+            cout << csv << endl;
+            csv.writeToFile(_log_file_name);
+        }
 
         /** @brief Convert point cloud from ROS sensor message to pcl point ptr **/
         pcl::PointCloud<pcl::PointXYZ>::Ptr 

@@ -26,7 +26,7 @@
 
 void user_server_ros::target_update_timer(const ros::TimerEvent &)
 {
-    std::lock_guard<std::mutex> agents_lock(agents_mutex);
+    
     if ((ros::Time::now() - module_start_time).toSec() < 3.0)
     {
         return;
@@ -41,8 +41,7 @@ void user_server_ros::target_update_timer(const ros::TimerEvent &)
             // 3. vertical-line
             // 4. top-down-facing
             // 5. left-right-facing
-            if (_formation.compare("left-right-facing") == 0 || 
-                _formation.compare("vertical-line") == 0)
+            if (_formation.compare("left-right-facing") == 0)
             {
                 agent_waypoints[i].waypoints.push_back(
                     Eigen::Vector3d(
@@ -51,7 +50,9 @@ void user_server_ros::target_update_timer(const ros::TimerEvent &)
                     agents[i].pos.z()));
             }
 
-            if (_formation.compare("antipodal") == 0)
+            if (_formation.compare("antipodal") == 0 || 
+                _formation.compare("horizontal-line") == 0 ||
+                _formation.compare("vertical-line") == 0)
             {
                 Eigen::Vector3d opp_vector = Eigen::Vector3d(
                     -agents[i].pos.x(), 
@@ -63,8 +64,7 @@ void user_server_ros::target_update_timer(const ros::TimerEvent &)
                 agent_waypoints[i].waypoints.push_back(opp_vector);
             }
 
-            if (_formation.compare("top-down-facing") == 0 || 
-                _formation.compare("horizontal-line") == 0)
+            if (_formation.compare("top-down-facing") == 0)
             {
                 agent_waypoints[i].waypoints.push_back(
                     Eigen::Vector3d(
@@ -80,6 +80,7 @@ void user_server_ros::target_update_timer(const ros::TimerEvent &)
     
     for (int i = 0; i < agents.size(); i++)
     {
+        // std::lock_guard<std::mutex> agents_lock(agents_mutex);
         std::string _id;
         _id = "drone" + to_string(agents[i].id);
         // std::cout << "[user_server] " << KGRN << _id << KNRM << 
@@ -92,6 +93,21 @@ void user_server_ros::target_update_timer(const ros::TimerEvent &)
             //     (agent_waypoints[agents[i].id].waypoints[agents[i].mission] - agents[i].pos).norm() << KNRM << std::endl;
             if ((agent_waypoints[agents[i].id].waypoints[agents[i].mission] - agents[i].pos).norm() >= 0.4)
                 continue;
+
+            else
+            {
+                if (stats[i].id == 0)
+                {
+                    // Logical gate to stop logging 
+                    stats[i].id = 1;
+                    stats[i].distance = agents[i].distance;
+                    stats[i].t = agents[i].t;
+                    stats[i].compute_time = 
+                        stats[i].compute_time / _logging_counter;
+                    stats[i].trajectory_start_time =
+                        agents[i].trajectory_start_time;
+                }
+            }
         }
 
         /** @brief Publisher that publishes goal vector */
@@ -153,6 +169,7 @@ void user_server_ros::target_update_timer(const ros::TimerEvent &)
 
         if (_logger_not_started)
         {
+            logging_start_time = ros::Time::now();
             _logging_timer.start();
             _logger_not_started = false;
         }
@@ -175,10 +192,18 @@ void user_server_ros::cloud_update_timer(const ros::TimerEvent &)
 
 void user_server_ros::logging_timer(const ros::TimerEvent &)
 {
+    if (_logger_not_started)
+        return;
 
+    _logging_counter++;
     for (int i = 0; i < _agent_number; i++)
     {
-        double safety_radius = 0.2;
+        if (stats[i].id == 1)
+        {
+            continue;
+        }
+
+        double safety_radius = 0.15;
         // std::string str = "";
         int col = 0;
         for (int j = 0; j < _agent_number; j++)
@@ -205,13 +230,16 @@ void user_server_ros::logging_timer(const ros::TimerEvent &)
 
         CSVWriter csv;
         csv.newRow() << 
-            (agents[i].t - module_start_time).toSec() << 
+            (agents[i].t - logging_start_time).toSec() << 
             agents[i].compute_time << 
             agents[i].vel.norm() <<
             agents[i].distance << 
             col;
             // str;
         csv.writeToFile(_log_file_name[i], true);
+
+        stats[i].compute_time = 
+            stats[i].compute_time + agents[i].compute_time;
     }
 }
 
@@ -279,6 +307,7 @@ void user_server_ros::trajectory_callback(const trajectory_msgs::JointTrajectory
 		int idx = stoi(uav_id_char);
 
         agents[idx].compute_time = computation;
+        agents[idx].trajectory_start_time = msg->header.stamp;
 
         return;
 

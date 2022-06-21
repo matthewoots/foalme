@@ -59,23 +59,23 @@ def main(argv):
                 marker = 'o',label = "drone" + str(id), markersize=1)
     
     # ax1.set(xlabel='time', ylabel='speed')
-    ax1.legend(loc="upper right", prop={'size': 4})
+    # ax1.legend(loc="upper right", prop={'size': 4})
     ax1.set_title('speed against time', fontsize = 8)
     ax1.grid()
     # ax1.set_yticks(np.arange(0, 10, 10))
 
     # ax2.set(xlabel='time', ylabel='distance')
-    ax2.legend(loc="upper right", prop={'size': 4})
+    # ax2.legend(loc="upper right", prop={'size': 4})
     ax2.set_title('distance against time', fontsize = 8)
     ax2.grid()
 
     # ax3.set(xlabel='time', ylabel='compute_time in sec')
-    ax3.legend(loc="upper right", prop={'size': 4})
+    # ax3.legend(loc="upper right", prop={'size': 4})
     ax3.set_title('compute_time against time', fontsize = 8)
     ax3.grid()
 
     # ax4.set(xlabel='time', ylabel='collision')
-    ax4.legend(loc="upper right", prop={'size': 4})
+    # ax4.legend(loc="upper right", prop={'size': 4})
     ax4.set_title('collision against time', fontsize = 8)
     ax4.grid()
 
